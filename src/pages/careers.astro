@@ -55,165 +55,159 @@ const heroMedia = getMedia('Careers');
       </div>
     </section>
 
-    <!-- Working at TrustOn -->
-    <section class="working-intro">
-      <div class="container working-intro-inner">
-        <h2>Working at TrustOn</h2>
-        <p>
-          We are committed to recruiting and nurturing the best talent in the security sector. We
-          are looking for enthusiastic, personable people who can work in a team, show
-          initiative, adaptability and good communication skills.
-        </p>
-      </div>
-    </section>
+    <!-- Info + Application form -->
+    <section class="careers-main">
+      <div class="container careers-main-grid">
+        <div class="careers-info">
+          <div class="info-block">
+            <h2>Working at TrustOn</h2>
+            <p>
+              We are committed to recruiting and nurturing the best talent in the security
+              sector. We are looking for enthusiastic, personable people who can work in a team,
+              show initiative, adaptability and good communication skills.
+            </p>
+          </div>
 
-    <!-- Our Values -->
-    <section class="careers-values">
-      <div class="container careers-values-grid">
-        <div class="values-col">
-          <h2>Our Values</h2>
-          <div class="values-icon-grid">
-            {values.map((value) => (
-              <div class="value-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" set:html={value.icon} />
-                <span>{value.label}</span>
-              </div>
-            ))}
+          <div class="info-block">
+            <h2>Our Values</h2>
+            <div class="values-icon-grid">
+              {values.map((value) => (
+                <div class="value-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" set:html={value.icon} />
+                  <span>{value.label}</span>
+                </div>
+              ))}
+            </div>
+            <p>
+              We understand that our people are our greatest strength. We are dedicated to being
+              an equal rights employer with all applicants and members of the company being
+              treated fairly on the basis of their ability and qualifications, without
+              discrimination on the grounds of gender, marital status, race or ethnic origin,
+              sexual orientation, age, religious belief, or physical or mental disability.
+            </p>
+            <p>
+              We expect high standards and ask every member of the team to demonstrate an
+              ability to deliver exceptional customer service and be able to remain calm and
+              proactive under pressure.
+            </p>
+            <p>
+              Qualified, professional operatives who care about their work are at the heart of
+              TrustOn. Our goal is to work with you to find you the most suitable role so all
+              potential employees are taken through a detailed interview process on application
+              and thoroughly vetted, at the point of offer, in accordance with the relevant
+              British Standards and SIA Regulations.
+            </p>
+          </div>
+
+          <div class="info-block">
+            <h2>Life at TrustOn</h2>
+            <ul class="testimonial-list">
+              {testimonials.map((quote) => (
+                <li>
+                  <svg class="testimonial-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <rect x="5" y="11" width="14" height="9" rx="1.5" />
+                    <path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="2" />
+                  </svg>
+                  <span>&ldquo;{quote}&rdquo;</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div class="copy-col">
-          <p>
-            We understand that our people are our greatest strength. We are dedicated to being an
-            equal rights employer with all applicants and members of the company being treated
-            fairly on the basis of their ability and qualifications, without discrimination on
-            the grounds of gender, marital status, race or ethnic origin, sexual orientation,
-            age, religious belief, or physical or mental disability.
-          </p>
-          <p>
-            We expect high standards and ask every member of the team to demonstrate an ability
-            to deliver exceptional customer service and be able to remain calm and proactive
-            under pressure.
-          </p>
-          <p>
-            Qualified, professional operatives who care about their work are at the heart of
-            TrustOn. Our goal is to work with you to find you the most suitable role so all
-            potential employees are taken through a detailed interview process on application and
-            thoroughly vetted, at the point of offer, in accordance with the relevant British
-            Standards and SIA Regulations.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Life at TrustOn -->
-    <section class="life-at-truston">
-      <div class="container">
-        <h2>Life at TrustOn</h2>
-        <ul class="testimonial-list">
-          {testimonials.map((quote) => (
-            <li>
-              <svg class="testimonial-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <rect x="5" y="11" width="14" height="9" rx="1.5" />
-                <path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="2" />
-              </svg>
-              <span>&ldquo;{quote}&rdquo;</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-
-    <!-- Application form -->
-    <section class="careers-form-section">
-      <div class="container">
-        <h2 class="careers-form-title">Apply Now</h2>
-        <form class="careers-form" id="careers-form">
-          <label class="field">
-            <span>Email <span class="required">*</span></span>
-            <input type="email" name="email" required />
-          </label>
-          <label class="field">
-            <span>First Name <span class="required">*</span></span>
-            <input type="text" name="first-name" required />
-          </label>
-          <label class="field">
-            <span>Last Name <span class="required">*</span></span>
-            <input type="text" name="last-name" required />
-          </label>
-          <label class="field">
-            <span>Mobile Number <span class="required">*</span></span>
-            <input type="tel" name="mobile" required />
-          </label>
-          <label class="field">
-            <span>City/Region <span class="required">*</span></span>
-            <input type="text" name="city-region" required />
-          </label>
-
-          <label class="checkbox-field">
-            <input type="checkbox" name="proof-confirmation" required />
-            <span>
-              I confirm I will provide proof of:
-              <span class="checkbox-subtext">
-                - A valid SIA Licence.<br />
-                - Eligibility to work in the UK.<br />
-                - A full 5 year employment history.
-              </span>
-            </span>
-          </label>
-
-          <p class="field-group-label">Where are you happy to work?</p>
-          <div class="location-grid">
-            {locations.map((location) => (
-              <label class="checkbox-field">
-                <input type="checkbox" name="locations" value={location} />
-                <span>I am happy to work in {location}</span>
+        <div class="careers-form-col">
+          <h2 class="careers-form-title">Apply Now</h2>
+          <form class="careers-form" id="careers-form">
+            <label class="field">
+              <span>Email <span class="required">*</span></span>
+              <input type="email" name="email" required />
+            </label>
+            <div class="field-row">
+              <label class="field">
+                <span>First Name <span class="required">*</span></span>
+                <input type="text" name="first-name" required />
               </label>
-            ))}
+              <label class="field">
+                <span>Last Name <span class="required">*</span></span>
+                <input type="text" name="last-name" required />
+              </label>
+            </div>
+            <div class="field-row">
+              <label class="field">
+                <span>Mobile Number <span class="required">*</span></span>
+                <input type="tel" name="mobile" required />
+              </label>
+              <label class="field">
+                <span>City/Region <span class="required">*</span></span>
+                <input type="text" name="city-region" required />
+              </label>
+            </div>
+
+            <label class="checkbox-field">
+              <input type="checkbox" name="proof-confirmation" required />
+              <span>
+                I confirm I will provide proof of:
+                <span class="checkbox-subtext">
+                  - A valid SIA Licence.<br />
+                  - Eligibility to work in the UK.<br />
+                  - A full 5 year employment history.
+                </span>
+              </span>
+            </label>
+
+            <p class="field-group-label">Where are you happy to work?</p>
+            <div class="location-grid">
+              {locations.map((location) => (
+                <label class="checkbox-field">
+                  <input type="checkbox" name="locations" value={location} />
+                  <span>I am happy to work in {location}</span>
+                </label>
+              ))}
+            </div>
+
+            <label class="field field-full">
+              <span>Personal Statement</span>
+              <textarea name="personal-statement" rows="3"></textarea>
+            </label>
+
+            <p class="privacy-note">
+              TrustOn Security is committed to protecting and respecting your privacy, and we'll
+              only use your personal information to administer your account. If you consent to
+              us contacting you for this purpose, please tick below:
+            </p>
+            <label class="checkbox-field">
+              <input type="checkbox" name="marketing-consent" />
+              <span>I agree to receive other communications from TrustOn Security</span>
+            </label>
+
+            <p class="privacy-note">
+              In order to provide you the content requested, we need to store and process your
+              personal data. If you consent to us storing your personal data for this purpose,
+              please tick the checkbox below.
+            </p>
+            <label class="checkbox-field">
+              <input type="checkbox" name="data-consent" required />
+              <span>I agree to allow TrustOn Security to store and process my personal data</span>
+            </label>
+
+            <p class="privacy-note">
+              You can unsubscribe from these communications at any time. For more information on
+              how to unsubscribe, our privacy practices, and how we are committed to protecting
+              and respecting your privacy, please review our <a href="/privacy-policy">Privacy Policy</a>.
+            </p>
+
+            <label class="field field-full">
+              <span>Please upload any supporting documents below</span>
+              <input type="file" name="documents" />
+            </label>
+
+            <button type="submit" class="btn">Submit</button>
+          </form>
+
+          <div class="careers-form-confirmation" id="careers-form-confirmation" hidden>
+            <p>Thanks — your application has been received.</p>
+            <p class="confirmation-sub">A member of the team will be in touch if your experience matches a current or future role.</p>
           </div>
-
-          <label class="field field-full">
-            <span>Personal Statement</span>
-            <textarea name="personal-statement" rows="5"></textarea>
-          </label>
-
-          <p class="privacy-note">
-            TrustOn Security is committed to protecting and respecting your privacy, and we'll
-            only use your personal information to administer your account. If you consent to us
-            contacting you for this purpose, please tick below:
-          </p>
-          <label class="checkbox-field">
-            <input type="checkbox" name="marketing-consent" />
-            <span>I agree to receive other communications from TrustOn Security</span>
-          </label>
-
-          <p class="privacy-note">
-            In order to provide you the content requested, we need to store and process your
-            personal data. If you consent to us storing your personal data for this purpose,
-            please tick the checkbox below.
-          </p>
-          <label class="checkbox-field">
-            <input type="checkbox" name="data-consent" required />
-            <span>I agree to allow TrustOn Security to store and process my personal data</span>
-          </label>
-
-          <p class="privacy-note">
-            You can unsubscribe from these communications at any time. For more information on
-            how to unsubscribe, our privacy practices, and how we are committed to protecting and
-            respecting your privacy, please review our <a href="/privacy-policy">Privacy Policy</a>.
-          </p>
-
-          <label class="field field-full">
-            <span>Please upload any supporting documents below</span>
-            <input type="file" name="documents" />
-          </label>
-
-          <button type="submit" class="btn">Submit</button>
-        </form>
-
-        <div class="careers-form-confirmation" id="careers-form-confirmation" hidden>
-          <p>Thanks — your application has been received.</p>
-          <p class="confirmation-sub">A member of the team will be in touch if your experience matches a current or future role.</p>
         </div>
       </div>
     </section>
@@ -259,45 +253,44 @@ const heroMedia = getMedia('Careers');
     margin: 16px auto 0;
   }
 
-  .working-intro {
-    background: var(--black);
-    padding: 64px 0;
-    text-align: center;
-  }
-
-  .working-intro-inner {
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  .working-intro-inner h2 {
-    margin-bottom: 16px;
-  }
-
-  .working-intro-inner p {
-    color: var(--white);
-    line-height: 1.7;
-  }
-
-  .careers-values {
+  .careers-main {
     background: var(--near-black);
     padding: 64px 0;
   }
 
-  .careers-values-grid {
+  .careers-main-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 48px;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 56px;
+    align-items: start;
   }
 
-  .values-col h2 {
-    margin-bottom: 24px;
+  .careers-info {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    min-width: 0;
+  }
+
+  .info-block h2 {
+    margin-bottom: 16px;
+  }
+
+  .info-block p {
+    color: var(--gray-text);
+    line-height: 1.7;
+    margin: 0 0 14px;
+  }
+
+  .info-block p:last-child {
+    margin-bottom: 0;
   }
 
   .values-icon-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 20px;
+    margin-bottom: 20px;
   }
 
   .value-item {
@@ -307,41 +300,24 @@ const heroMedia = getMedia('Careers');
   }
 
   .value-item svg {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     color: var(--red);
     flex-shrink: 0;
   }
 
   .value-item span {
     font-weight: 600;
-  }
-
-  .copy-col p {
-    color: var(--gray-text);
-    line-height: 1.7;
-    margin: 0 0 16px;
-  }
-
-  .life-at-truston {
-    background: var(--black);
-    padding: 64px 0;
-  }
-
-  .life-at-truston h2 {
-    text-align: center;
-    margin-bottom: 32px;
+    color: var(--white);
   }
 
   .testimonial-list {
     list-style: none;
     padding: 0;
     margin: 0;
-    max-width: 800px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 18px;
   }
 
   .testimonial-list li {
@@ -351,8 +327,8 @@ const heroMedia = getMedia('Careers');
   }
 
   .testimonial-icon {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     color: var(--red);
     flex-shrink: 0;
     margin-top: 4px;
@@ -364,23 +340,21 @@ const heroMedia = getMedia('Careers');
     line-height: 1.6;
   }
 
-  .careers-form-section {
-    background: var(--near-black);
-    padding: 64px 0;
+  .careers-form-col {
+    position: sticky;
+    top: 24px;
+    min-width: 0;
   }
 
   .careers-form-title {
-    text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
   }
 
   .careers-form,
   .careers-form-confirmation {
     background: var(--white);
     color: var(--black);
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 32px;
+    padding: 24px;
     border-radius: 12px;
   }
 
@@ -401,27 +375,33 @@ const heroMedia = getMedia('Careers');
   .field {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    font-size: 0.9rem;
-    margin-bottom: 16px;
+    gap: 4px;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 12px;
   }
 
   .field-full {
-    margin-top: 8px;
+    margin-top: 4px;
   }
 
   .field input,
   .field textarea {
-    padding: 10px 12px;
+    padding: 7px 10px;
     border: 1px solid #d0d0d0;
     border-radius: 6px;
     font-family: var(--font-body);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     resize: vertical;
   }
 
   .field input[type='file'] {
-    padding: 8px;
+    padding: 6px;
   }
 
   .required {
@@ -431,9 +411,9 @@ const heroMedia = getMedia('Careers');
   .checkbox-field {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    font-size: 0.9rem;
-    margin-bottom: 12px;
+    gap: 8px;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
     cursor: pointer;
   }
 
@@ -451,23 +431,23 @@ const heroMedia = getMedia('Careers');
   }
 
   .field-group-label {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    margin: 20px 0 10px;
+    margin: 10px 0 6px;
   }
 
   .location-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4px 16px;
-    margin-bottom: 16px;
+    gap: 2px 16px;
+    margin-bottom: 10px;
   }
 
   .privacy-note {
     color: #6a6a6a;
-    font-size: 0.82rem;
-    line-height: 1.6;
-    margin: 20px 0 10px;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    margin: 12px 0 6px;
   }
 
   .privacy-note a {
@@ -478,16 +458,23 @@ const heroMedia = getMedia('Careers');
   .careers-form .btn {
     width: 100%;
     text-align: center;
-    margin-top: 12px;
+    margin-top: 4px;
+    padding: 11px 28px;
   }
 
   @media (max-width: 900px) {
-    .careers-values-grid {
+    .careers-main-grid {
       grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .careers-form-col {
+      position: static;
     }
 
     .values-icon-grid,
-    .location-grid {
+    .location-grid,
+    .field-row {
       grid-template-columns: 1fr;
     }
   }
