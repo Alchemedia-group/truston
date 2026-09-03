@@ -74,7 +74,7 @@ const testimonials = [
       ) : (
         <div class="placeholder-media about-hero-bg" aria-hidden="true">TrustOn van photo</div>
       )}
-      <div class="container about-hero-inner">
+      <div class="about-hero-inner">
         <div class="about-copy">
           <h1>About Us</h1>
           <p>
@@ -218,10 +218,12 @@ const testimonials = [
   .about-hero-inner {
     position: relative;
     z-index: 1;
+    width: 100%;
+    padding: 0 6%;
   }
 
   .about-copy {
-    max-width: 640px;
+    max-width: 460px;
   }
 
   .about-copy h1 {
@@ -233,7 +235,7 @@ const testimonials = [
   }
 
   .about-copy p {
-    color: var(--gray-text);
+    color: var(--white);
     line-height: 1.7;
     margin-top: 20px;
   }
