@@ -1,0 +1,505 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getMedia, isVideo } from '../lib/media';
+
+const values = [
+  {
+    label: 'Integrity',
+    icon: '<path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/>',
+  },
+  {
+    label: 'Teamwork',
+    icon: '<circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M12 20c0-2 .8-3.8 2-5"/>',
+  },
+  {
+    label: 'Innovation',
+    icon: '<path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2.3h6c0-1.1.4-1.8 1-2.3A7 7 0 0 0 12 2z"/>',
+  },
+  {
+    label: 'Transparency',
+    icon: '<path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/>',
+  },
+];
+
+const testimonials = [
+  'We receive strong support from the management team.',
+  'What interests me most is that everyone shares the same vision and we are all dedicated to our mission.',
+  "If anyone wants a security company give TrustOn Security a call as they are the BEST company I've ever worked for.",
+];
+
+const locations = ['Wiltshire', 'Berkshire', 'Gloucestershire', 'Oxfordshire'];
+
+const heroMedia = getMedia('Careers');
+---
+
+<Layout title="Careers | TrustOn Security Systems" description="We are committed to recruiting and nurturing the best talent in the security sector. We are looking for enthusiastic, personable people who can work in a team, show initiative, adaptability and good communication skills.">
+  <Header />
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      {heroMedia ? (
+        isVideo(heroMedia) ? (
+          <video class="hero-media" src={heroMedia} autoplay muted loop playsinline aria-hidden="true" />
+        ) : (
+          <img class="hero-media" src={heroMedia} alt="" aria-hidden="true" />
+        )
+      ) : (
+        <div class="placeholder-media hero-media" aria-hidden="true">Careers photo</div>
+      )}
+      <div class="hero-overlay">
+        <h1>Careers</h1>
+        <div class="divider"></div>
+      </div>
+    </section>
+
+    <!-- Working at TrustOn -->
+    <section class="working-intro">
+      <div class="container working-intro-inner">
+        <h2>Working at TrustOn</h2>
+        <p>
+          We are committed to recruiting and nurturing the best talent in the security sector. We
+          are looking for enthusiastic, personable people who can work in a team, show
+          initiative, adaptability and good communication skills.
+        </p>
+      </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="careers-values">
+      <div class="container careers-values-grid">
+        <div class="values-col">
+          <h2>Our Values</h2>
+          <div class="values-icon-grid">
+            {values.map((value) => (
+              <div class="value-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" set:html={value.icon} />
+                <span>{value.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="copy-col">
+          <p>
+            We understand that our people are our greatest strength. We are dedicated to being an
+            equal rights employer with all applicants and members of the company being treated
+            fairly on the basis of their ability and qualifications, without discrimination on
+            the grounds of gender, marital status, race or ethnic origin, sexual orientation,
+            age, religious belief, or physical or mental disability.
+          </p>
+          <p>
+            We expect high standards and ask every member of the team to demonstrate an ability
+            to deliver exceptional customer service and be able to remain calm and proactive
+            under pressure.
+          </p>
+          <p>
+            Qualified, professional operatives who care about their work are at the heart of
+            TrustOn. Our goal is to work with you to find you the most suitable role so all
+            potential employees are taken through a detailed interview process on application and
+            thoroughly vetted, at the point of offer, in accordance with the relevant British
+            Standards and SIA Regulations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Life at TrustOn -->
+    <section class="life-at-truston">
+      <div class="container">
+        <h2>Life at TrustOn</h2>
+        <ul class="testimonial-list">
+          {testimonials.map((quote) => (
+            <li>
+              <svg class="testimonial-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <rect x="5" y="11" width="14" height="9" rx="1.5" />
+                <path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="2" />
+              </svg>
+              <span>&ldquo;{quote}&rdquo;</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Application form -->
+    <section class="careers-form-section">
+      <div class="container">
+        <h2 class="careers-form-title">Apply Now</h2>
+        <form class="careers-form" id="careers-form">
+          <label class="field">
+            <span>Email <span class="required">*</span></span>
+            <input type="email" name="email" required />
+          </label>
+          <label class="field">
+            <span>First Name <span class="required">*</span></span>
+            <input type="text" name="first-name" required />
+          </label>
+          <label class="field">
+            <span>Last Name <span class="required">*</span></span>
+            <input type="text" name="last-name" required />
+          </label>
+          <label class="field">
+            <span>Mobile Number <span class="required">*</span></span>
+            <input type="tel" name="mobile" required />
+          </label>
+          <label class="field">
+            <span>City/Region <span class="required">*</span></span>
+            <input type="text" name="city-region" required />
+          </label>
+
+          <label class="checkbox-field">
+            <input type="checkbox" name="proof-confirmation" required />
+            <span>
+              I confirm I will provide proof of:
+              <span class="checkbox-subtext">
+                - A valid SIA Licence.<br />
+                - Eligibility to work in the UK.<br />
+                - A full 5 year employment history.
+              </span>
+            </span>
+          </label>
+
+          <p class="field-group-label">Where are you happy to work?</p>
+          <div class="location-grid">
+            {locations.map((location) => (
+              <label class="checkbox-field">
+                <input type="checkbox" name="locations" value={location} />
+                <span>I am happy to work in {location}</span>
+              </label>
+            ))}
+          </div>
+
+          <label class="field field-full">
+            <span>Personal Statement</span>
+            <textarea name="personal-statement" rows="5"></textarea>
+          </label>
+
+          <p class="privacy-note">
+            TrustOn Security is committed to protecting and respecting your privacy, and we'll
+            only use your personal information to administer your account. If you consent to us
+            contacting you for this purpose, please tick below:
+          </p>
+          <label class="checkbox-field">
+            <input type="checkbox" name="marketing-consent" />
+            <span>I agree to receive other communications from TrustOn Security</span>
+          </label>
+
+          <p class="privacy-note">
+            In order to provide you the content requested, we need to store and process your
+            personal data. If you consent to us storing your personal data for this purpose,
+            please tick the checkbox below.
+          </p>
+          <label class="checkbox-field">
+            <input type="checkbox" name="data-consent" required />
+            <span>I agree to allow TrustOn Security to store and process my personal data</span>
+          </label>
+
+          <p class="privacy-note">
+            You can unsubscribe from these communications at any time. For more information on
+            how to unsubscribe, our privacy practices, and how we are committed to protecting and
+            respecting your privacy, please review our <a href="/privacy-policy">Privacy Policy</a>.
+          </p>
+
+          <label class="field field-full">
+            <span>Please upload any supporting documents below</span>
+            <input type="file" name="documents" />
+          </label>
+
+          <button type="submit" class="btn">Submit</button>
+        </form>
+
+        <div class="careers-form-confirmation" id="careers-form-confirmation" hidden>
+          <p>Thanks — your application has been received.</p>
+          <p class="confirmation-sub">A member of the team will be in touch if your experience matches a current or future role.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .hero {
+    position: relative;
+    height: 420px;
+    overflow: hidden;
+  }
+
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-overlay {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 160px 32px 0;
+  }
+
+  .hero-overlay h1 {
+    background: rgba(13, 13, 15, 0.75);
+    display: inline-block;
+    padding: 16px 48px;
+  }
+
+  .divider {
+    width: 80px;
+    height: 3px;
+    background: var(--red);
+    margin: 16px auto 0;
+  }
+
+  .working-intro {
+    background: var(--black);
+    padding: 64px 0;
+    text-align: center;
+  }
+
+  .working-intro-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .working-intro-inner h2 {
+    margin-bottom: 16px;
+  }
+
+  .working-intro-inner p {
+    color: var(--white);
+    line-height: 1.7;
+  }
+
+  .careers-values {
+    background: var(--near-black);
+    padding: 64px 0;
+  }
+
+  .careers-values-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+  }
+
+  .values-col h2 {
+    margin-bottom: 24px;
+  }
+
+  .values-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .value-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .value-item svg {
+    width: 32px;
+    height: 32px;
+    color: var(--red);
+    flex-shrink: 0;
+  }
+
+  .value-item span {
+    font-weight: 600;
+  }
+
+  .copy-col p {
+    color: var(--gray-text);
+    line-height: 1.7;
+    margin: 0 0 16px;
+  }
+
+  .life-at-truston {
+    background: var(--black);
+    padding: 64px 0;
+  }
+
+  .life-at-truston h2 {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .testimonial-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .testimonial-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .testimonial-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--red);
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .testimonial-list span {
+    color: var(--white);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .careers-form-section {
+    background: var(--near-black);
+    padding: 64px 0;
+  }
+
+  .careers-form-title {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .careers-form,
+  .careers-form-confirmation {
+    background: var(--white);
+    color: var(--black);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px;
+    border-radius: 12px;
+  }
+
+  .careers-form-confirmation {
+    text-align: center;
+  }
+
+  .careers-form-confirmation p {
+    margin: 0 0 8px;
+    font-weight: 600;
+  }
+
+  .confirmation-sub {
+    color: #4a4a4a;
+    font-weight: 400 !important;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+  }
+
+  .field-full {
+    margin-top: 8px;
+  }
+
+  .field input,
+  .field textarea {
+    padding: 10px 12px;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    resize: vertical;
+  }
+
+  .field input[type='file'] {
+    padding: 8px;
+  }
+
+  .required {
+    color: var(--red);
+  }
+
+  .checkbox-field {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+
+  .checkbox-field input {
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  .checkbox-subtext {
+    display: block;
+    color: #6a6a6a;
+    font-size: 0.82rem;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  .field-group-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 20px 0 10px;
+  }
+
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 16px;
+    margin-bottom: 16px;
+  }
+
+  .privacy-note {
+    color: #6a6a6a;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    margin: 20px 0 10px;
+  }
+
+  .privacy-note a {
+    color: var(--red);
+    text-decoration: underline;
+  }
+
+  .careers-form .btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .careers-values-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .values-icon-grid,
+    .location-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('careers-form') as HTMLFormElement;
+  const confirmation = document.getElementById('careers-form-confirmation') as HTMLElement;
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    form.hidden = true;
+    confirmation.hidden = false;
+  });
+</script>
