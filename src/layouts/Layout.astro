@@ -1,10 +1,13 @@
 ---
+import { getMedia } from '../lib/media';
+
 interface Props {
   title: string;
   description?: string;
 }
 
 const { title, description = '' } = Astro.props;
+const faviconSrc = getMedia('Favicon');
 ---
 
 <!doctype html>
@@ -12,7 +15,7 @@ const { title, description = '' } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {faviconSrc && <link rel="icon" type="image/png" href={faviconSrc} />}
     <meta name="description" content={description} />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
