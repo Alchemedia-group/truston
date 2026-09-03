@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import QuoteForm from '../components/QuoteForm.astro';
 
 const sectors = [
   { label: 'Homes', desc: 'Your home should feel safe, even when you’re not there.' },
@@ -43,8 +44,6 @@ const systems = [
     desc: 'Enable users to control lighting and appliances, detect water leaks, manage water supply, and monitor air quality. Through automation, these devices reinforce on-site security.',
   },
 ];
-
-const facilityTypes = ['Apartment', 'House', 'Office', 'Business (shop, warehouse, cafe, etc.)'];
 ---
 
 <Layout title="TrustOn Security Systems | Intelligent Security Solutions" description="Protect your home and business with intelligent security systems designed for complete peace of mind. Licensed Ajax Systems Partner.">
@@ -140,26 +139,7 @@ const facilityTypes = ['Apartment', 'House', 'Office', 'Business (shop, warehous
     </section>
 
     <!-- Free Quotation -->
-    <section class="quote">
-      <div class="container quote-inner">
-        <h2>Free Quotation</h2>
-        <p class="quote-subtitle">Complete the following questionnaire to receive a free quotation</p>
-
-        <div class="quote-card">
-          <p class="quote-step">Step 1 of 5</p>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width: 20%;"></div>
-          </div>
-          <p class="quote-question">Choose facility type <span class="required">*</span></p>
-          <div class="facility-grid">
-            {facilityTypes.map((facility) => (
-              <button type="button" class="facility-option">{facility}</button>
-            ))}
-          </div>
-          <button type="button" class="btn">Next</button>
-        </div>
-      </div>
-    </section>
+    <QuoteForm />
   </main>
 
   <Footer />
@@ -314,81 +294,6 @@ const facilityTypes = ['Apartment', 'House', 'Office', 'Business (shop, warehous
     margin: 16px 0 8px;
   }
 
-  .quote {
-    background: var(--near-black);
-    padding: 64px 0;
-    position: relative;
-  }
-
-  .quote-inner {
-    text-align: center;
-  }
-
-  .quote-subtitle {
-    color: var(--gray-text);
-    margin: 8px 0 32px;
-  }
-
-  .quote-card {
-    background: var(--white);
-    color: var(--black);
-    border-radius: 12px;
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 32px;
-    text-align: left;
-  }
-
-  .quote-step {
-    font-size: 0.85rem;
-    color: #6a6a6a;
-    margin: 0 0 8px;
-  }
-
-  .progress-bar {
-    height: 6px;
-    background: #e5e5e5;
-    border-radius: 3px;
-    margin-bottom: 24px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: var(--red);
-  }
-
-  .quote-question {
-    font-weight: 600;
-    margin-bottom: 16px;
-  }
-
-  .required {
-    color: var(--red);
-  }
-
-  .facility-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-
-  .facility-option {
-    padding: 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    background: var(--white);
-    color: var(--black);
-    cursor: pointer;
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-  }
-
-  .facility-option:hover {
-    border-color: var(--red);
-  }
-
   @media (max-width: 900px) {
     .hero-inner,
     .floorplan-inner,
@@ -401,10 +306,6 @@ const facilityTypes = ['Apartment', 'House', 'Office', 'Business (shop, warehous
     }
 
     .systems-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .facility-grid {
       grid-template-columns: 1fr;
     }
   }

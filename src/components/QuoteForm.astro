@@ -1,0 +1,429 @@
+---
+const facilityTypes = [
+  { label: 'Apartment', icon: 'apartment' },
+  { label: 'House', icon: 'house' },
+  { label: 'Office', icon: 'office' },
+  { label: 'Business (shop, warehouse, cafe, etc.)', icon: 'business' },
+];
+
+const systemFunctionalities = [
+  { label: 'Intrusion Protection', icon: 'lock' },
+  { label: 'Video Surveillance', icon: 'camera' },
+  { label: 'Fire and Life Safety', icon: 'flame' },
+  { label: 'Comfort and Automation', icon: 'phone' },
+];
+
+const systemColours = [
+  { label: 'White', value: 'white' },
+  { label: 'Black', value: 'black' },
+];
+
+const areaOptions = ['North', 'South', 'East', 'West', 'Midlands', 'Scotland', 'Wales', 'Northern Ireland'];
+
+const icons: Record<string, string> = {
+  apartment: '<rect x="5" y="3" width="14" height="18"/><line x1="5" y1="8" x2="19" y2="8"/><line x1="5" y1="13" x2="19" y2="13"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/>',
+  house: '<path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/><rect x="10" y="14" width="4" height="6"/>',
+  office: '<rect x="6" y="2" width="12" height="20"/><line x1="6" y1="7" x2="18" y2="7"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="6" y1="17" x2="18" y2="17"/><rect x="10" y="17" width="4" height="5"/>',
+  business: '<path d="M4 8l1-5h14l1 5"/><path d="M4 8a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5 8v13h14V8"/><rect x="10" y="14" width="4" height="7"/>',
+  lock: '<rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="15" r="1.3" fill="currentColor" stroke="none"/>',
+  camera: '<rect x="2" y="7" width="14" height="10" rx="2"/><path d="M16 10l5-3v10l-5-3z"/>',
+  flame: '<path d="M12 21c3.5 0 6-2.5 6-6 0-3-2-5-3-7-.5 2-2 3-2 5 0-2-1-4-3-6-1 3-4 5-4 8 0 3.5 2.5 6 6 6z"/>',
+  phone: '<rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/>',
+};
+---
+
+<section class="quote">
+  <div class="container quote-inner">
+    <h2>Free Quotation</h2>
+    <p class="quote-subtitle">Complete the following questionnaire to receive a free quotation</p>
+
+    <form class="quote-card" id="quote-form">
+      <p class="quote-step"><span id="step-label">Step 1 of 5</span></p>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width: 20%;"></div>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="form-step" data-step="1">
+        <p class="quote-question">Choose facility type <span class="required">*</span></p>
+        <div class="option-grid">
+          {facilityTypes.map((facility) => (
+            <button type="button" class="option-card" data-group="facility">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" set:html={icons[facility.icon]} />
+              <span>{facility.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="form-step" data-step="2" hidden>
+        <p class="quote-question">Choose System Functionalities <span class="required">*</span></p>
+        <div class="option-grid">
+          {systemFunctionalities.map((system) => (
+            <button type="button" class="option-card" data-group="functionality">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" set:html={icons[system.icon]} />
+              <span>{system.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="form-step" data-step="3" hidden>
+        <p class="quote-question">Layout</p>
+        <div class="field-grid">
+          <label class="field">
+            <span>Number of Entrances <span class="required">*</span></span>
+            <input type="number" min="0" name="entrances" />
+          </label>
+          <label class="field">
+            <span>Number of Floors <span class="required">*</span></span>
+            <input type="number" min="0" name="floors" />
+          </label>
+          <label class="field">
+            <span>Number of Rooms <span class="required">*</span></span>
+            <input type="number" min="0" name="rooms" />
+          </label>
+          <label class="field">
+            <span>Number of Windows <span class="required">*</span></span>
+            <input type="number" min="0" name="windows" />
+          </label>
+          <div class="field">
+            <span>Does the property have a garage?</span>
+            <div class="radio-row">
+              <label><input type="radio" name="garage" value="yes" /> Yes</label>
+              <label><input type="radio" name="garage" value="no" /> No</label>
+            </div>
+          </div>
+          <div class="field">
+            <span>Does the garage have a window</span>
+            <div class="radio-row">
+              <label><input type="radio" name="garage-window" value="yes" /> Yes</label>
+              <label><input type="radio" name="garage-window" value="no" /> No</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="form-step" data-step="4" hidden>
+        <p class="quote-question">Select System Colour <span class="required">*</span></p>
+        <div class="colour-grid">
+          {systemColours.map((colour) => (
+            <button type="button" class="colour-option" data-group="colour">
+              <span class={`swatch swatch-${colour.value}`}></span>
+              <span>{colour.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="form-step" data-step="5" hidden>
+        <p class="quote-question">Your Details</p>
+        <div class="field-grid">
+          <label class="field">
+            <span>First Name <span class="required">*</span></span>
+            <input type="text" name="first-name" required />
+          </label>
+          <label class="field">
+            <span>Last Name <span class="required">*</span></span>
+            <input type="text" name="last-name" required />
+          </label>
+          <label class="field">
+            <span>Email <span class="required">*</span></span>
+            <input type="email" name="email" required />
+          </label>
+          <label class="field">
+            <span>Phone <span class="required">*</span></span>
+            <input type="tel" name="phone" required />
+          </label>
+          <label class="field">
+            <span>Area</span>
+            <select name="area">
+              <option value="">Select area</option>
+              {areaOptions.map((area) => (
+                <option value={area}>{area}</option>
+              ))}
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <!-- Confirmation -->
+      <div class="form-step confirmation" data-step="confirmation" hidden>
+        <p class="quote-question">Thanks — your request is in.</p>
+        <p class="confirmation-text">Our team will be in touch shortly with your bespoke quotation.</p>
+      </div>
+
+      <div class="step-actions">
+        <button type="button" class="btn-secondary" id="prev-btn" hidden>Previous</button>
+        <button type="button" class="btn" id="next-btn">Next</button>
+        <button type="submit" class="btn" id="submit-btn" hidden>Submit</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<style>
+  .quote {
+    background: var(--near-black);
+    padding: 64px 0;
+  }
+
+  .quote-inner {
+    text-align: center;
+  }
+
+  .quote-subtitle {
+    color: var(--gray-text);
+    margin: 8px 0 32px;
+  }
+
+  .quote-card {
+    background: var(--white);
+    color: var(--black);
+    border-radius: 12px;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 32px;
+    text-align: left;
+  }
+
+  .quote-step {
+    font-size: 0.85rem;
+    color: #6a6a6a;
+    margin: 0 0 8px;
+  }
+
+  .progress-bar {
+    height: 6px;
+    background: #e5e5e5;
+    border-radius: 3px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--red);
+    transition: width 0.2s ease;
+  }
+
+  .quote-question {
+    font-weight: 600;
+    margin: 0 0 16px;
+  }
+
+  .required {
+    color: var(--red);
+  }
+
+  .option-grid,
+  .colour-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .option-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--black);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .option-card svg {
+    width: 32px;
+    height: 32px;
+    color: var(--red);
+  }
+
+  .option-card:hover {
+    border-color: var(--red);
+  }
+
+  .option-card.selected {
+    border-color: var(--red);
+    border-width: 2px;
+    background: #fff5f5;
+  }
+
+  .colour-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 16px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--black);
+  }
+
+  .swatch {
+    display: block;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+  }
+
+  .swatch-white {
+    background: var(--white);
+  }
+
+  .swatch-black {
+    background: #000;
+  }
+
+  .colour-option.selected .swatch {
+    outline: 3px solid var(--red);
+    outline-offset: 2px;
+  }
+
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.9rem;
+  }
+
+  .field input,
+  .field select {
+    padding: 10px 12px;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+  }
+
+  .radio-row {
+    display: flex;
+    gap: 16px;
+    font-weight: 400;
+  }
+
+  .radio-row label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .confirmation-text {
+    color: #4a4a4a;
+    line-height: 1.6;
+  }
+
+  .step-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    background: #e5e5e5;
+    color: var(--black);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+  }
+
+  #next-btn,
+  #submit-btn {
+    margin-left: auto;
+  }
+
+  @media (max-width: 900px) {
+    .option-grid,
+    .colour-grid,
+    .field-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('quote-form') as HTMLFormElement;
+  const steps = Array.from(form.querySelectorAll<HTMLElement>('.form-step'));
+  const totalSteps = steps.filter((step) => step.dataset.step !== 'confirmation').length;
+
+  const stepLabel = document.getElementById('step-label')!;
+  const progressFill = document.getElementById('progress-fill') as HTMLElement;
+  const prevBtn = document.getElementById('prev-btn') as HTMLButtonElement;
+  const nextBtn = document.getElementById('next-btn') as HTMLButtonElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+
+  let current = 1;
+
+  function render() {
+    steps.forEach((step) => {
+      step.hidden = step.dataset.step !== String(current);
+    });
+
+    stepLabel.textContent = `Step ${current} of ${totalSteps}`;
+    progressFill.style.width = `${(current / totalSteps) * 100}%`;
+
+    prevBtn.hidden = current === 1;
+    nextBtn.hidden = current === totalSteps;
+    submitBtn.hidden = current !== totalSteps;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (current > 1) {
+      current -= 1;
+      render();
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (current < totalSteps) {
+      current += 1;
+      render();
+    }
+  });
+
+  form.querySelectorAll<HTMLButtonElement>('[data-group]').forEach((option) => {
+    option.addEventListener('click', () => {
+      const group = option.dataset.group;
+      form.querySelectorAll(`[data-group="${group}"]`).forEach((el) => el.classList.remove('selected'));
+      option.classList.add('selected');
+    });
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    steps.forEach((step) => {
+      step.hidden = step.dataset.step !== 'confirmation';
+    });
+    document.querySelector('.step-actions')?.setAttribute('hidden', '');
+  });
+
+  render();
+</script>

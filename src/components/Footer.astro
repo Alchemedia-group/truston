@@ -1,4 +1,6 @@
 ---
+import Logo from './Logo.astro';
+
 const currentYear = new Date().getFullYear();
 
 const footerLinks = [
@@ -11,10 +13,7 @@ const footerLinks = [
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <a class="logo" href="/">
-      <span class="logo-truston">Trust<span class="logo-o">0</span>n</span>
-      <span class="logo-sub">Security Systems</span>
-    </a>
+    <Logo size="small" />
 
     <nav class="footer-links" aria-label="Footer navigation">
       {footerLinks.map((link) => (
@@ -50,30 +49,6 @@ const footerLinks = [
     flex-wrap: wrap;
     gap: 16px;
     padding: 32px 24px;
-  }
-
-  .logo {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    line-height: 1;
-  }
-
-  .logo-truston {
-    font-family: var(--font-display);
-    font-size: 1.4rem;
-    color: var(--white);
-  }
-
-  .logo-o {
-    color: var(--red);
-  }
-
-  .logo-sub {
-    font-family: var(--font-display);
-    font-size: 0.7rem;
-    color: var(--red);
-    margin-top: 2px;
   }
 
   .footer-links {

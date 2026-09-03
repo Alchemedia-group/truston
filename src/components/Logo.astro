@@ -1,0 +1,85 @@
+---
+interface Props {
+  size?: 'large' | 'small';
+}
+
+const { size = 'large' } = Astro.props;
+---
+
+<a class={`logo logo-${size}`} href="/">
+  <span class="wordmark">
+    <span class="word">Trust</span>
+    <svg class="lock" viewBox="0 0 100 100" aria-hidden="true">
+      <path
+        d="M30 46 V32 a20 20 0 0 1 40 0 V46"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="9"
+        stroke-linecap="round"
+      />
+      <rect x="18" y="42" width="64" height="48" rx="10" fill="currentColor" />
+      <circle cx="50" cy="61" r="6" fill="var(--black)" />
+      <rect x="46" y="65" width="8" height="14" fill="var(--black)" />
+    </svg>
+    <span class="word">n</span>
+  </span>
+  <span class="subtext">Security Systems</span>
+</a>
+
+<style>
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-decoration: none;
+    line-height: 1;
+    gap: 2px;
+  }
+
+  .wordmark {
+    display: flex;
+    align-items: center;
+  }
+
+  .word {
+    font-family: var(--font-display);
+    color: var(--white);
+  }
+
+  .lock {
+    color: var(--red);
+  }
+
+  .subtext {
+    font-family: var(--font-display);
+    color: var(--red);
+  }
+
+  .logo-large .word {
+    font-size: 1.8rem;
+  }
+
+  .logo-large .lock {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0 1px;
+  }
+
+  .logo-large .subtext {
+    font-size: 0.85rem;
+  }
+
+  .logo-small .word {
+    font-size: 1.4rem;
+  }
+
+  .logo-small .lock {
+    width: 1.15rem;
+    height: 1.15rem;
+    margin: 0 1px;
+  }
+
+  .logo-small .subtext {
+    font-size: 0.7rem;
+  }
+</style>

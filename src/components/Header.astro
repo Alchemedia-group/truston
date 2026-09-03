@@ -1,4 +1,6 @@
 ---
+import Logo from './Logo.astro';
+
 const systemLinks = [
   { label: 'Intrusion Detection', href: '/our-systems/intrusion-detection' },
   { label: 'Smart Site Security', href: '/our-systems/smart-site-security' },
@@ -24,10 +26,7 @@ const aboutLinks = [
 
   <div class="main-bar">
     <div class="container main-bar-inner">
-      <a class="logo" href="/">
-        <span class="logo-truston">Trust<span class="logo-o">0</span>n</span>
-        <span class="logo-sub">Security Systems</span>
-      </a>
+      <Logo size="large" />
 
       <nav class="nav" aria-label="Main navigation">
         <div class="nav-item has-dropdown">
@@ -92,30 +91,6 @@ const aboutLinks = [
     align-items: center;
     justify-content: space-between;
     padding: 16px 24px;
-  }
-
-  .logo {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    line-height: 1;
-  }
-
-  .logo-truston {
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    color: var(--white);
-  }
-
-  .logo-o {
-    color: var(--red);
-  }
-
-  .logo-sub {
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    color: var(--red);
-    margin-top: 2px;
   }
 
   .nav {
