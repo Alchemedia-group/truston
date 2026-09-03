@@ -6,45 +6,54 @@ import QuoteForm from '../components/QuoteForm.astro';
 import { getMedia, isVideo } from '../lib/media';
 
 const sectors = [
-  { label: 'Vacant Property', desc: 'An empty property shouldn’t be an easy target.' },
-  { label: 'Construction', desc: 'Don’t let theft, trespass or vandalism delay your next deadline.' },
-  { label: 'Farms', desc: 'Protect your land, livestock and equipment from those who shouldn’t be there.' },
-  { label: 'Retail', desc: 'Protect your people, premises and profits, day and night.' },
-  { label: 'Homes', desc: 'Your home should feel safe, even when you’re not there.' },
+  { label: 'Vacant Property', media: 'Truston Vacant Property Security', desc: 'An empty property shouldn’t be an easy target.' },
+  { label: 'Construction', media: 'Truston Construction Security', desc: 'Don’t let theft, trespass or vandalism delay your next deadline.' },
+  { label: 'Farms', media: 'Truston Farm Security', desc: 'Protect your land, livestock and equipment from those who shouldn’t be there.' },
+  { label: 'Retail', media: 'Truston Retail Security', desc: 'Protect your people, premises and profits, day and night.' },
+  { label: 'Homes', media: 'Truston Home Security', desc: 'Your home should feel safe, even when you’re not there.' },
 ];
 
 const systems = [
   {
     label: 'Intrusion Detection',
+    media: 'Intrusion Detection',
     href: '/our-systems/intrusion-detection',
     desc: 'A wide range of smart indoor and outdoor Ajax devices operate as a unified force to ensure protection against potential intrusion and deliver the best-in-class user experience.',
   },
   {
     label: 'Perimeter Protection',
+    media: 'Perimeter Protection',
     href: '/our-systems/perimeter-protection',
     desc: 'Experience award-winning products, indoor and outdoor solutions, operating as a unified force to ensure protection against potential intrusion all in one smart ecosystem.',
   },
   {
     label: 'Video Surveillance',
+    media: 'Video Surveillance',
     href: '/our-systems/video-surveillance',
     desc: 'With cutting-edge technology and unparalleled reliability, AJAX surveillance solutions provide crystal-clear, real-time monitoring to protect your home, business and loved ones.',
   },
   {
     label: 'Intelligent Access Systems',
+    media: 'Intelligent access systems',
     href: '/our-systems/intelligent-access-systems',
     desc: 'Embrace the future of secure access management and experience the freedom of worry-free key storage. Combine technology with robust design ensuring durability.',
   },
   {
     label: 'Fire & Life Safety',
+    media: 'Fire And Life Safety',
     href: '/our-systems/fire-and-life-safety',
     desc: 'Fire and life safety devices combine patented technologies, connectivity, ease of installation, and compliance with the most stringent international regulations.',
   },
   {
     label: 'Comfort & Automation',
+    media: 'Comfort and Automation',
     href: '/our-systems/comfort-and-automation',
     desc: 'Enable users to control lighting and appliances, detect water leaks, manage water supply, and monitor air quality. Through automation, these devices reinforce on-site security.',
   },
 ];
+
+const heroMedia = getMedia('Home page Hero');
+const ajaxTvMedia = getMedia('Get Started With Ajax');
 ---
 
 <Layout title="TrustOn Security Systems | Intelligent Security Solutions" description="Protect your home and business with intelligent security systems designed for complete peace of mind. Licensed Ajax Systems Partner.">
@@ -70,7 +79,11 @@ const systems = [
           <a class="btn" href="/contact">Request a Bespoke Quotation</a>
         </div>
         <div class="hero-media">
-          <div class="placeholder-media" style="aspect-ratio: 4/3;">Security equipment photo</div>
+          {heroMedia ? (
+            <img class="hero-photo" src={heroMedia} alt="TrustOn security equipment" style="aspect-ratio: 4/3;" />
+          ) : (
+            <div class="placeholder-media" style="aspect-ratio: 4/3;">Security equipment photo</div>
+          )}
           <div class="ajax-badge">AJAX &mdash; AUTHORIZED SECURITY COMPANY</div>
         </div>
       </div>
@@ -80,7 +93,7 @@ const systems = [
     <section class="sectors">
       <div class="container sector-grid">
         {sectors.map((sector) => {
-          const media = getMedia(sector.label);
+          const media = getMedia(sector.media);
           return (
             <div class="sector-card">
               {media ? (
@@ -106,7 +119,7 @@ const systems = [
         <h2 class="section-title">Our Systems</h2>
         <div class="systems-grid">
           {systems.map((system) => {
-            const media = getMedia(system.label);
+            const media = getMedia(system.media);
             return (
               <a class="system-card" href={system.href}>
                 {media ? (
@@ -130,9 +143,13 @@ const systems = [
     <!-- Ajax TV -->
     <section class="ajax-tv">
       <div class="container ajax-tv-inner">
-        <div class="placeholder-media video-placeholder" style="aspect-ratio: 16/9;">
-          Video surveillance brought to the TV screen
-        </div>
+        {ajaxTvMedia ? (
+          <video class="video-placeholder" src={ajaxTvMedia} style="aspect-ratio: 16/9;" controls />
+        ) : (
+          <div class="placeholder-media video-placeholder" style="aspect-ratio: 16/9;">
+            Video surveillance brought to the TV screen
+          </div>
+        )}
         <div class="ajax-tv-copy">
           <h2>Get started with Ajax TV</h2>
           <p>
@@ -191,6 +208,12 @@ const systems = [
     color: var(--red);
     margin-right: 8px;
     font-weight: 700;
+  }
+
+  .hero-photo {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 4px;
   }
 
   .ajax-badge {
@@ -286,6 +309,7 @@ const systems = [
   }
 
   .video-placeholder {
+    width: 100%;
     border-radius: 8px;
   }
 
