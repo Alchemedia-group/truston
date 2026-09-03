@@ -62,6 +62,12 @@ const ajaxTvMedia = getMedia('Get Started With Ajax');
   <main>
     <!-- Hero -->
     <section class="hero">
+      {heroMedia ? (
+        <img class="hero-bg" src={heroMedia} alt="" aria-hidden="true" />
+      ) : (
+        <div class="placeholder-media hero-bg" aria-hidden="true">Security equipment photo</div>
+      )}
+      <div class="hero-scrim" aria-hidden="true"></div>
       <div class="container hero-inner">
         <div class="hero-copy">
           <h1>Professional Security Solutions</h1>
@@ -77,14 +83,6 @@ const ajaxTvMedia = getMedia('Get Started With Ajax');
             <li>Bespoke Security Solutions</li>
           </ul>
           <a class="btn" href="/contact">Request a Bespoke Quotation</a>
-        </div>
-        <div class="hero-media">
-          {heroMedia ? (
-            <img class="hero-photo" src={heroMedia} alt="TrustOn security equipment" style="aspect-ratio: 4/3;" />
-          ) : (
-            <div class="placeholder-media" style="aspect-ratio: 4/3;">Security equipment photo</div>
-          )}
-          <div class="ajax-badge">AJAX &mdash; AUTHORIZED SECURITY COMPANY</div>
         </div>
       </div>
     </section>
@@ -144,7 +142,7 @@ const ajaxTvMedia = getMedia('Get Started With Ajax');
     <section class="ajax-tv">
       <div class="container ajax-tv-inner">
         {ajaxTvMedia ? (
-          <video class="video-placeholder" src={ajaxTvMedia} style="aspect-ratio: 16/9;" controls />
+          <video class="video-placeholder" src={ajaxTvMedia} style="aspect-ratio: 16/9;" autoplay muted loop playsinline />
         ) : (
           <div class="placeholder-media video-placeholder" style="aspect-ratio: 16/9;">
             Video surveillance brought to the TV screen
@@ -176,15 +174,33 @@ const ajaxTvMedia = getMedia('Get Started With Ajax');
 
 <style>
   .hero {
+    position: relative;
     background: var(--near-black);
-    padding: 64px 0;
+    padding: 96px 0;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(13, 13, 15, 0.95) 0%, rgba(13, 13, 15, 0.75) 45%, rgba(13, 13, 15, 0.35) 100%);
   }
 
   .hero-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-copy {
+    max-width: 560px;
   }
 
   .hero-copy p {
@@ -208,20 +224,6 @@ const ajaxTvMedia = getMedia('Get Started With Ajax');
     color: var(--red);
     margin-right: 8px;
     font-weight: 700;
-  }
-
-  .hero-photo {
-    width: 100%;
-    object-fit: cover;
-    border-radius: 4px;
-  }
-
-  .ajax-badge {
-    margin-top: 12px;
-    text-align: center;
-    color: var(--gray-text);
-    font-size: 0.8rem;
-    letter-spacing: 1px;
   }
 
   .sectors {
@@ -329,7 +331,6 @@ const ajaxTvMedia = getMedia('Get Started With Ajax');
   }
 
   @media (max-width: 900px) {
-    .hero-inner,
     .ajax-tv-inner {
       grid-template-columns: 1fr;
     }
