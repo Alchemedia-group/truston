@@ -41,6 +41,11 @@ const missionMedia = getMedia('Mission statement');
 
 const testimonials = [
   {
+    quote: 'TrustOn were so quick to get a Siteguard on our site when we had a problem! Rang them Friday morning and it was operational by the weekend',
+    author: 'Client',
+    date: 'March 2026',
+  },
+  {
     quote: 'From the initial survey through to installation, TrustOn made everything straightforward. The Ajax system is incredibly easy to use, and the team took the time to make sure we understood exactly how everything worked.',
     author: 'Client',
     date: 'January 2026',
@@ -175,17 +180,17 @@ const testimonials = [
         </p>
 
         <div class="testimonials-carousel">
-          <button type="button" class="carousel-arrow" aria-label="Previous testimonial">&#10094;</button>
-          <div class="testimonials-track">
-            {testimonials.map((t) => (
-              <div class="testimonial-card">
-                <p class="quote">{t.quote}</p>
-                <p class="author">{t.author}</p>
-                <p class="date">{t.date}</p>
+          <button type="button" class="carousel-arrow" id="testimonial-prev" aria-label="Previous testimonial">&#10094;</button>
+          <div class="testimonials-track" id="testimonials-track">
+            {[0, 1, 2].map((slot) => (
+              <div class="testimonial-card" data-slot={slot}>
+                <p class="quote">{testimonials[slot].quote}</p>
+                <p class="author">{testimonials[slot].author}</p>
+                <p class="date">{testimonials[slot].date}</p>
               </div>
             ))}
           </div>
-          <button type="button" class="carousel-arrow" aria-label="Next testimonial">&#10095;</button>
+          <button type="button" class="carousel-arrow" id="testimonial-next" aria-label="Next testimonial">&#10095;</button>
         </div>
       </div>
     </section>
@@ -378,6 +383,14 @@ const testimonials = [
   }
 
   .testimonial-card {
+    transition: opacity 0.2s ease;
+  }
+
+  .testimonial-card.fading {
+    opacity: 0;
+  }
+
+  .testimonial-card {
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 24px;
@@ -417,3 +430,34 @@ const testimonials = [
     }
   }
 </style>
+
+<script define:vars={{ testimonials }}>
+  const track = document.getElementById('testimonials-track');
+  const prevBtn = document.getElementById('testimonial-prev');
+  const nextBtn = document.getElementById('testimonial-next');
+  const cards = Array.from(track.querySelectorAll('.testimonial-card'));
+
+  const total = testimonials.length;
+  let startIndex = 0;
+
+  function render() {
+    cards.forEach((card, slot) => {
+      const t = testimonials[(startIndex + slot) % total];
+      card.querySelector('.quote').textContent = t.quote;
+      card.querySelector('.author').textContent = t.author;
+      card.querySelector('.date').textContent = t.date;
+    });
+  }
+
+  function slide(direction) {
+    cards.forEach((card) => card.classList.add('fading'));
+    setTimeout(() => {
+      startIndex = (startIndex + direction + total) % total;
+      render();
+      cards.forEach((card) => card.classList.remove('fading'));
+    }, 200);
+  }
+
+  prevBtn.addEventListener('click', () => slide(-1));
+  nextBtn.addEventListener('click', () => slide(1));
+</script>
