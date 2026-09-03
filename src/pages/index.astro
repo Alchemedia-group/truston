@@ -3,13 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import QuoteForm from '../components/QuoteForm.astro';
+import { getMedia, isVideo } from '../lib/media';
 
 const sectors = [
-  { label: 'Homes', desc: 'Your home should feel safe, even when you’re not there.' },
-  { label: 'Farms', desc: 'Protect your land, livestock and equipment from those who shouldn’t be there.' },
-  { label: 'Construction', desc: 'Don’t let theft, trespass or vandalism delay your next deadline.' },
-  { label: 'Retail', desc: 'Protect your people, premises and profits, day and night.' },
   { label: 'Vacant Property', desc: 'An empty property shouldn’t be an easy target.' },
+  { label: 'Construction', desc: 'Don’t let theft, trespass or vandalism delay your next deadline.' },
+  { label: 'Farms', desc: 'Protect your land, livestock and equipment from those who shouldn’t be there.' },
+  { label: 'Retail', desc: 'Protect your people, premises and profits, day and night.' },
+  { label: 'Homes', desc: 'Your home should feel safe, even when you’re not there.' },
 ];
 
 const systems = [
@@ -19,8 +20,8 @@ const systems = [
     desc: 'A wide range of smart indoor and outdoor Ajax devices operate as a unified force to ensure protection against potential intrusion and deliver the best-in-class user experience.',
   },
   {
-    label: 'Smart Site Security',
-    href: '/our-systems/smart-site-security',
+    label: 'Perimeter Protection',
+    href: '/our-systems/perimeter-protection',
     desc: 'Experience award-winning products, indoor and outdoor solutions, operating as a unified force to ensure protection against potential intrusion all in one smart ecosystem.',
   },
   {
@@ -64,7 +65,7 @@ const systems = [
           <ul class="checklist">
             <li>Authorised Ajax Installer</li>
             <li>Professional Installation</li>
-            <li>Residential &amp; Commercial Solutions</li>
+            <li>Bespoke Security Solutions</li>
           </ul>
           <a class="btn" href="/contact">Request a Bespoke Quotation</a>
         </div>
@@ -78,13 +79,24 @@ const systems = [
     <!-- Sector cards -->
     <section class="sectors">
       <div class="container sector-grid">
-        {sectors.map((sector) => (
-          <div class="sector-card">
-            <div class="placeholder-media" style="aspect-ratio: 4/3;">{sector.label} photo</div>
-            <h3>{sector.label}</h3>
-            <p>{sector.desc}</p>
-          </div>
-        ))}
+        {sectors.map((sector) => {
+          const media = getMedia(sector.label);
+          return (
+            <div class="sector-card">
+              {media ? (
+                isVideo(media) ? (
+                  <video class="sector-media" src={media} style="aspect-ratio: 4/3;" autoplay muted loop playsinline />
+                ) : (
+                  <img class="sector-media" src={media} alt={sector.label} style="aspect-ratio: 4/3;" loading="lazy" />
+                )
+              ) : (
+                <div class="placeholder-media" style="aspect-ratio: 4/3;">{sector.label} photo</div>
+              )}
+              <h3>{sector.label}</h3>
+              <p>{sector.desc}</p>
+            </div>
+          );
+        })}
       </div>
     </section>
 
@@ -93,25 +105,25 @@ const systems = [
       <div class="container">
         <h2 class="section-title">Our Systems</h2>
         <div class="systems-grid">
-          {systems.map((system) => (
-            <a class="system-card" href={system.href}>
-              <div class="placeholder-media" style="aspect-ratio: 16/10;">{system.label} photo</div>
-              <h3>{system.label}</h3>
-              <p>{system.desc}</p>
-            </a>
-          ))}
+          {systems.map((system) => {
+            const media = getMedia(system.label);
+            return (
+              <a class="system-card" href={system.href}>
+                {media ? (
+                  isVideo(media) ? (
+                    <video class="system-media" src={media} style="aspect-ratio: 16/10;" autoplay muted loop playsinline />
+                  ) : (
+                    <img class="system-media" src={media} alt={system.label} style="aspect-ratio: 16/10;" loading="lazy" />
+                  )
+                ) : (
+                  <div class="placeholder-media" style="aspect-ratio: 16/10;">{system.label} photo</div>
+                )}
+                <h3>{system.label}</h3>
+                <p>{system.desc}</p>
+              </a>
+            );
+          })}
         </div>
-      </div>
-    </section>
-
-    <!-- Floorplan -->
-    <section class="floorplan">
-      <div class="container floorplan-inner">
-        <p class="floorplan-copy">
-          All Ajax devices have a sleek design and fit perfectly into any interior. Wireless
-          devices can be installed even after repairs, as they do not require additional wiring.
-        </p>
-        <div class="placeholder-media" style="aspect-ratio: 16/10;">Floorplan device diagram</div>
       </div>
     </section>
 
@@ -195,8 +207,18 @@ const systems = [
 
   .sector-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 20px;
+  }
+
+  .sector-card {
+    min-width: 0;
+  }
+
+  .sector-media {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 4px;
   }
 
   .sector-card h3 {
@@ -232,6 +254,12 @@ const systems = [
     color: inherit;
   }
 
+  .system-media {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
   .system-card h3 {
     font-family: var(--font-body);
     font-weight: 600;
@@ -243,24 +271,6 @@ const systems = [
     color: var(--gray-text);
     font-size: 0.85rem;
     line-height: 1.5;
-  }
-
-  .floorplan {
-    background: var(--white);
-    color: var(--black);
-    padding: 64px 0;
-  }
-
-  .floorplan-inner {
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 32px;
-    align-items: center;
-  }
-
-  .floorplan-copy {
-    color: #4a4a4a;
-    line-height: 1.7;
   }
 
   .ajax-tv {
@@ -296,13 +306,8 @@ const systems = [
 
   @media (max-width: 900px) {
     .hero-inner,
-    .floorplan-inner,
     .ajax-tv-inner {
       grid-template-columns: 1fr;
-    }
-
-    .sector-grid {
-      grid-template-columns: repeat(2, 1fr);
     }
 
     .systems-grid {
