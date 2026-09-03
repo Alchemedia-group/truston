@@ -112,7 +112,7 @@ const ajaxTvMedia = getMedia('Get Started With Ajax');
 
     <!-- Our Systems -->
     <section class="systems">
-      <div class="container">
+      <div class="container systems-container">
         <h2 class="section-title">Our Systems</h2>
         <div class="systems-grid">
           {systems.map((system) => {
@@ -236,7 +236,7 @@ const ajaxTvMedia = getMedia('Get Started With Ajax');
   .sector-media {
     width: 100%;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 15px;
   }
 
   .sector-card h3 {
@@ -254,6 +254,10 @@ const ajaxTvMedia = getMedia('Get Started With Ajax');
 
   .systems {
     padding: 48px 0 64px;
+  }
+
+  .systems-container {
+    max-width: 1400px;
   }
 
   .section-title {
@@ -275,7 +279,7 @@ const ajaxTvMedia = getMedia('Get Started With Ajax');
   .system-media {
     width: 100%;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 15px;
   }
 
   .system-card h3 {
@@ -303,7 +307,7 @@ const ajaxTvMedia = getMedia('Get Started With Ajax');
 
   .video-placeholder {
     width: 100%;
-    border-radius: 8px;
+    border-radius: 15px;
   }
 
   .ajax-tv-copy p {
