@@ -1,0 +1,204 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  title: string;
+  tagline: string;
+  metaDescription: string;
+  heroImageLabel: string;
+  introParagraphs: string[];
+  introImageLabel: string;
+  detailHeading: string;
+  detailParagraphs: string[];
+  quote?: string;
+}
+
+const {
+  title,
+  tagline,
+  metaDescription,
+  heroImageLabel,
+  introParagraphs,
+  introImageLabel,
+  detailHeading,
+  detailParagraphs,
+  quote,
+} = Astro.props;
+---
+
+<Layout title={`${title} | TrustOn Security Systems`} description={metaDescription}>
+  <Header />
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="placeholder-media hero-media" aria-hidden="true">{heroImageLabel}</div>
+      <div class="hero-overlay">
+        <h1>{title}</h1>
+        <div class="divider"></div>
+        <p>{tagline}</p>
+        <a class="btn" href="/contact">Request a Bespoke Quotation</a>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="intro">
+      <div class="container intro-grid">
+        <div class="copy">
+          {introParagraphs.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
+        <div class="placeholder-media intro-media" aria-hidden="true">{introImageLabel}</div>
+      </div>
+    </section>
+
+    <!-- Detail -->
+    <section class="detail">
+      <div class="container detail-inner">
+        <h2>{detailHeading}</h2>
+        {quote && <blockquote class="quote-block">{quote}</blockquote>}
+        {detailParagraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container">
+        <h2>Ready to protect your facility?</h2>
+        <p>Need advice on how to secure your home or business premises with an Ajax alarm system?</p>
+        <p>Simply fill out the form, and our team of experts will respond as quickly as possible to address your alarm installation needs.</p>
+        <a class="btn" href="/contact">Get in Touch</a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .hero {
+    position: relative;
+    height: 480px;
+  }
+
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    align-items: flex-start;
+    padding-top: 24px;
+  }
+
+  .hero-overlay {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 120px 32px 0;
+  }
+
+  .hero-overlay h1 {
+    background: rgba(13, 13, 15, 0.75);
+    display: inline-block;
+    padding: 16px 48px;
+  }
+
+  .divider {
+    width: 80px;
+    height: 3px;
+    background: var(--red);
+    margin: 16px auto;
+  }
+
+  .hero-overlay p {
+    color: var(--white);
+    margin: 0 0 24px;
+    font-size: 1.1rem;
+  }
+
+  .intro {
+    background: var(--black);
+    padding: 64px 0;
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .copy p {
+    color: var(--gray-text);
+    line-height: 1.7;
+  }
+
+  .intro-media {
+    aspect-ratio: 4/3;
+    border-radius: 8px;
+  }
+
+  .detail {
+    background: var(--near-black);
+    padding: 64px 0;
+  }
+
+  .detail-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .detail-inner h2 {
+    margin-bottom: 20px;
+  }
+
+  .detail-inner p {
+    color: var(--gray-text);
+    line-height: 1.7;
+    text-align: left;
+  }
+
+  .quote-block {
+    margin: 24px 0 0;
+    padding: 20px 24px;
+    border-left: 3px solid var(--red);
+    text-align: left;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.7;
+  }
+
+  .cta {
+    background: var(--white);
+    color: var(--black);
+    text-align: center;
+    padding: 80px 0;
+  }
+
+  .cta h2 {
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .cta p {
+    color: #4a4a4a;
+    max-width: 600px;
+    margin: 0 auto 8px;
+  }
+
+  .cta .btn {
+    margin-top: 24px;
+  }
+
+  @media (max-width: 900px) {
+    .intro-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
