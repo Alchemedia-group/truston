@@ -30,7 +30,7 @@ const aboutLinks = [
 
       <nav class="nav" aria-label="Main navigation">
         <div class="nav-item has-dropdown">
-          <a href="/about">About Us <span class="chevron">&#9662;</span></a>
+          <span class="nav-trigger" role="button" tabindex="0">About Us <span class="chevron">&#9662;</span></span>
           <div class="dropdown">
             {aboutLinks.map((link) => (
               <a href={link.href}>{link.label}</a>
@@ -39,7 +39,7 @@ const aboutLinks = [
         </div>
 
         <div class="nav-item has-dropdown">
-          <a href="/our-systems">Our Systems <span class="chevron">&#9662;</span></a>
+          <span class="nav-trigger" role="button" tabindex="0">Our Systems <span class="chevron">&#9662;</span></span>
           <div class="dropdown">
             {systemLinks.map((link) => (
               <a href={link.href}>{link.label}</a>
@@ -155,7 +155,8 @@ const aboutLinks = [
     position: relative;
   }
 
-  .nav-item > a {
+  .nav-item > a,
+  .nav-item > .nav-trigger {
     text-decoration: none;
     color: var(--white);
     font-weight: 500;
@@ -164,7 +165,12 @@ const aboutLinks = [
     gap: 4px;
   }
 
-  .nav-item > a:hover {
+  .nav-item > .nav-trigger {
+    cursor: default;
+  }
+
+  .nav-item > a:hover,
+  .nav-item > .nav-trigger:hover {
     color: var(--red);
   }
 

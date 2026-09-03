@@ -2,34 +2,42 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { getMedia } from '../lib/media';
 
 const values = [
   {
     title: 'Integrity - Security you can trust',
     desc: 'We give clear, honest advice and recommend solutions based on what our customers genuinely need. From system design to installation and ongoing support, we take responsibility for doing things properly.',
+    media: 'Integrity',
   },
   {
     title: 'Innovation - Technology with purpose.',
     desc: 'We embrace new technology when it makes security smarter, faster or more effective. Innovation isn’t about adding more devices; it’s about using the right technology together to deliver better protection.',
+    media: 'Innovation',
   },
   {
     title: 'Clarity - Intelligent doesn’t have to mean complicated.',
     desc: 'Security technology can be sophisticated without being difficult to understand. We cut through the jargon, explain what matters and make intelligent security straightforward to use and manage.',
+    media: 'Clarity',
   },
   {
     title: 'Resilience - Ready when it matters.',
     desc: 'Security has to perform when something goes wrong. We design dependable, adaptable systems around real risks, giving our customers confidence that their protection is working today and can evolve with their needs tomorrow.',
+    media: 'Resilience',
   },
 ];
 
 const stats = [
-  'Constantly Evolving',
-  '24/7:365',
-  'First Class Service',
-  'Bespoke Solutions',
-  'Competitive Rates',
-  'Rapid Deployment',
+  { label: 'Constantly Evolving', media: 'constantly evolving' },
+  { label: '24/7:365', media: '24 7' },
+  { label: 'First Class Service', media: 'first class service' },
+  { label: 'Bespoke Solutions', media: 'Bespoke' },
+  { label: 'Competitive Rates', media: 'competitive rates' },
+  { label: 'Rapid Deployment', media: 'rapid deployment' },
 ];
+
+const heroMedia = getMedia('Truston Van');
+const missionMedia = getMedia('Mission statement');
 
 const testimonials = [
   {
@@ -71,7 +79,11 @@ const testimonials = [
             use, dependable and designed for the real world.
           </p>
         </div>
-        <div class="placeholder-media" style="aspect-ratio: 16/9;">TrustOn van photo</div>
+        {heroMedia ? (
+          <img class="about-hero-media" src={heroMedia} alt="TrustOn van" style="aspect-ratio: 16/9;" />
+        ) : (
+          <div class="placeholder-media" style="aspect-ratio: 16/9;">TrustOn van photo</div>
+        )}
       </div>
     </section>
 
@@ -81,10 +93,14 @@ const testimonials = [
         <div class="mission">
           <h2>Mission<br /><span class="accent">Statement</span></h2>
           <div class="mission-icon" aria-hidden="true">
-            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z" />
-              <circle cx="12" cy="11" r="3" />
-            </svg>
+            {missionMedia ? (
+              <img src={missionMedia} alt="" width="80" height="80" />
+            ) : (
+              <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z" />
+                <circle cx="12" cy="11" r="3" />
+              </svg>
+            )}
           </div>
           <p>
             TrustOn Security Systems combines proven technology, expert design and local
@@ -97,19 +113,26 @@ const testimonials = [
         <div class="values">
           <h2>Our<br /><span class="accent">Values</span></h2>
           <ul class="values-list">
-            {values.map((value) => (
-              <li>
-                <div class="value-icon" aria-hidden="true">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M20 6L9 17l-5-5" />
-                  </svg>
-                </div>
-                <div>
-                  <h3>{value.title}</h3>
-                  <p>{value.desc}</p>
-                </div>
-              </li>
-            ))}
+            {values.map((value) => {
+              const media = getMedia(value.media);
+              return (
+                <li>
+                  <div class="value-icon" aria-hidden="true">
+                    {media ? (
+                      <img src={media} alt="" width="56" height="56" />
+                    ) : (
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg>
+                    )}
+                  </div>
+                  <div>
+                    <h3>{value.title}</h3>
+                    <p>{value.desc}</p>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
@@ -121,16 +144,23 @@ const testimonials = [
         <h2 class="stats-title">Intelligent security. Designed around you.</h2>
         <p class="stats-subtitle">Backed by TrustOn</p>
         <div class="stats-grid">
-          {stats.map((stat) => (
-            <div class="stat-item">
-              <div class="stat-icon" aria-hidden="true">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <circle cx="12" cy="12" r="9" />
-                </svg>
+          {stats.map((stat) => {
+            const media = getMedia(stat.media);
+            return (
+              <div class="stat-item">
+                <div class="stat-icon" aria-hidden="true">
+                  {media ? (
+                    <img src={media} alt="" width="64" height="64" />
+                  ) : (
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <circle cx="12" cy="12" r="9" />
+                    </svg>
+                  )}
+                </div>
+                <p>{stat.label}</p>
               </div>
-              <p>{stat}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
@@ -191,6 +221,12 @@ const testimonials = [
     margin-top: 20px;
   }
 
+  .about-hero-media {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+
   .mission-values {
     padding: 64px 0;
   }
@@ -238,15 +274,18 @@ const testimonials = [
 
   .value-icon {
     flex-shrink: 0;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--near-black);
-    border: 2px solid var(--red);
+    width: 56px;
+    height: 56px;
     color: var(--red);
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .value-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
   .values-list h3 {

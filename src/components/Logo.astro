@@ -1,29 +1,38 @@
 ---
+import { getMedia } from '../lib/media';
+
 interface Props {
   size?: 'large' | 'small';
 }
 
 const { size = 'large' } = Astro.props;
+const logoSrc = getMedia('Trustong Logo');
 ---
 
 <a class={`logo logo-${size}`} href="/">
-  <span class="wordmark">
-    <span class="word">Trust</span>
-    <svg class="lock" viewBox="0 0 100 100" aria-hidden="true">
-      <path
-        d="M30 46 V32 a20 20 0 0 1 40 0 V46"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="9"
-        stroke-linecap="round"
-      />
-      <rect x="18" y="42" width="64" height="48" rx="10" fill="currentColor" />
-      <circle cx="50" cy="61" r="6" fill="var(--black)" />
-      <rect x="46" y="65" width="8" height="14" fill="var(--black)" />
-    </svg>
-    <span class="word">n</span>
-  </span>
-  <span class="subtext">Security Systems</span>
+  {logoSrc ? (
+    <img class="logo-img" src={logoSrc} alt="TrustOn Security Systems" />
+  ) : (
+    <>
+      <span class="wordmark">
+        <span class="word">Trust</span>
+        <svg class="lock" viewBox="0 0 100 100" aria-hidden="true">
+          <path
+            d="M30 46 V32 a20 20 0 0 1 40 0 V46"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="9"
+            stroke-linecap="round"
+          />
+          <rect x="18" y="42" width="64" height="48" rx="10" fill="currentColor" />
+          <circle cx="50" cy="61" r="6" fill="var(--black)" />
+          <rect x="46" y="65" width="8" height="14" fill="var(--black)" />
+        </svg>
+        <span class="word">n</span>
+      </span>
+      <span class="subtext">Security Systems</span>
+    </>
+  )}
 </a>
 
 <style>
@@ -34,6 +43,18 @@ const { size = 'large' } = Astro.props;
     text-decoration: none;
     line-height: 1;
     gap: 2px;
+  }
+
+  .logo-img {
+    width: auto;
+  }
+
+  .logo-large .logo-img {
+    height: 56px;
+  }
+
+  .logo-small .logo-img {
+    height: 42px;
   }
 
   .wordmark {
