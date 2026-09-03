@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
+import QuoteModal from './QuoteModal.astro';
 
 interface Props {
   title: string;
@@ -72,12 +73,13 @@ const {
         <h2>Ready to protect your facility?</h2>
         <p>Need advice on how to secure your home or business premises with an Ajax alarm system?</p>
         <p>Simply fill out the form, and our team of experts will respond as quickly as possible to address your alarm installation needs.</p>
-        <a class="btn" href="/contact">Get in Touch</a>
+        <button type="button" class="btn" data-open-quote>Start your bespoke quote</button>
       </div>
     </section>
   </main>
 
   <Footer />
+  <QuoteModal />
 </Layout>
 
 <style>

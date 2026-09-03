@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import QuoteModal from '../../components/QuoteModal.astro';
 import { getMedia, isVideo } from '../../lib/media';
 
 const features = [
@@ -39,7 +40,7 @@ const packageOptions = [
 ];
 
 const heroVideo = getMedia('Intruder Detection(1)');
-const introMedia = getMedia('Intrusion Detection Intro');
+const introMedia = getMedia('intruder intro');
 ---
 
 <Layout title="Intrusion Detection | TrustOn Security Systems" description="An alarm should do more than make a noise. Intrusion detection systems from TrustOn Security Systems, designed around your property and the risks you actually face.">
@@ -114,14 +115,16 @@ const introMedia = getMedia('Intrusion Detection Intro');
 
     <!-- Protection backed by people -->
     <section class="backed-by-people">
-      <div class="container backed-inner">
-        <h2>Protection backed by people</h2>
-        <p class="lead">Technology detects the problem. TrustOn helps deal with it.</p>
-        <p>
-          Depending on the level of protection you need, intrusion detection can form part of a
-          wider TrustOn package incorporating monitoring, keyholding, alarm response, CCTV and
-          mobile security.
-        </p>
+      <div class="container">
+        <div class="backed-header">
+          <h2>Protection backed by people</h2>
+          <p class="lead">Technology detects the problem. TrustOn helps deal with it.</p>
+          <p>
+            Depending on the level of protection you need, intrusion detection can form part of a
+            wider TrustOn package incorporating monitoring, keyholding, alarm response, CCTV and
+            mobile security.
+          </p>
+        </div>
 
         <div class="tile-grid">
           {packageOptions.map((option) => (
@@ -141,12 +144,13 @@ const introMedia = getMedia('Intrusion Detection Intro');
         <h2>Ready to protect your facility?</h2>
         <p>Need advice on how to secure your home or business premises with an Ajax alarm system?</p>
         <p>Simply fill out the form, and our team of experts will respond as quickly as possible to address your alarm installation needs.</p>
-        <a class="btn" href="/contact">Get in Touch</a>
+        <button type="button" class="btn" data-open-quote>Start your bespoke quote</button>
       </div>
     </section>
   </main>
 
   <Footer />
+  <QuoteModal />
 </Layout>
 
 <style>
@@ -239,24 +243,24 @@ const introMedia = getMedia('Intrusion Detection Intro');
     padding: 64px 0;
   }
 
-  .backed-inner {
+  .backed-header {
     max-width: 760px;
     margin: 0 auto;
     text-align: center;
   }
 
-  .backed-inner h2 {
+  .backed-header h2 {
     margin-bottom: 16px;
   }
 
-  .backed-inner .lead {
+  .backed-header .lead {
     color: var(--white);
     font-weight: 600;
     font-size: 1.1rem;
     margin: 0 0 12px;
   }
 
-  .backed-inner > p {
+  .backed-header > p {
     color: var(--gray-text);
     line-height: 1.7;
   }
@@ -264,7 +268,7 @@ const introMedia = getMedia('Intrusion Detection Intro');
   .tile-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
+    gap: 24px;
     margin-top: 40px;
     text-align: left;
   }
@@ -273,14 +277,14 @@ const introMedia = getMedia('Intrusion Detection Intro');
     background: var(--black);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 20px;
+    padding: 24px;
   }
 
   .tile-icon {
-    width: 32px;
-    height: 32px;
+    width: 44px;
+    height: 44px;
     color: var(--red);
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
 
   .tile h3 {

@@ -1,0 +1,87 @@
+---
+import QuoteForm from './QuoteForm.astro';
+---
+
+<div class="quote-modal" id="quote-modal" aria-hidden="true">
+  <div class="quote-modal-overlay" id="quote-modal-overlay"></div>
+  <div class="quote-modal-panel" role="dialog" aria-modal="true" aria-label="Start your bespoke quote">
+    <button class="quote-modal-close" id="quote-modal-close" type="button" aria-label="Close">&times;</button>
+    <QuoteForm />
+  </div>
+</div>
+
+<style>
+  .quote-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: none;
+  }
+
+  .quote-modal.open {
+    display: block;
+  }
+
+  .quote-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .quote-modal-panel {
+    position: relative;
+    max-width: 760px;
+    margin: 40px auto;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    border-radius: 12px;
+  }
+
+  .quote-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 24px;
+    z-index: 2;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 2.2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 8px;
+  }
+</style>
+
+<script>
+  const modal = document.getElementById('quote-modal') as HTMLElement;
+  const overlay = document.getElementById('quote-modal-overlay') as HTMLElement;
+  const closeBtn = document.getElementById('quote-modal-close') as HTMLButtonElement;
+
+  function openModal() {
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+    const trigger = target.closest('[data-open-quote]');
+    if (trigger) {
+      event.preventDefault();
+      openModal();
+    }
+  });
+
+  overlay.addEventListener('click', closeModal);
+  closeBtn.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeModal();
+  });
+</script>
