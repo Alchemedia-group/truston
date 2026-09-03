@@ -15,6 +15,10 @@ const { title, description = '' } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <slot name="head" />
   </head>
   <body>
     <slot />
@@ -23,7 +27,16 @@ const { title, description = '' } = Astro.props;
 
 <style is:global>
   :root {
-    color-scheme: light;
+    --black: #0d0d0f;
+    --near-black: #131316;
+    --red: #e0211f;
+    --red-dark: #b81a18;
+    --white: #ffffff;
+    --gray-text: #b7b7bd;
+    --border: rgba(255, 255, 255, 0.1);
+
+    --font-display: 'Titan One', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
   }
 
   * {
@@ -32,6 +45,65 @@ const { title, description = '' } = Astro.props;
 
   body {
     margin: 0;
-    font-family: system-ui, sans-serif;
+    font-family: var(--font-body);
+    background: var(--black);
+    color: var(--white);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--red);
+    color: var(--white);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: background 0.15s ease;
+  }
+
+  .btn:hover {
+    background: var(--red-dark);
+  }
+
+  .placeholder-media {
+    background: repeating-linear-gradient(
+      45deg,
+      #1c1c20,
+      #1c1c20 10px,
+      #232327 10px,
+      #232327 20px
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6a6a72;
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 8px;
   }
 </style>

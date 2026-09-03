@@ -1,10 +1,411 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const sectors = [
+  { label: 'Homes', desc: 'Your home should feel safe, even when you’re not there.' },
+  { label: 'Farms', desc: 'Protect your land, livestock and equipment from those who shouldn’t be there.' },
+  { label: 'Construction', desc: 'Don’t let theft, trespass or vandalism delay your next deadline.' },
+  { label: 'Retail', desc: 'Protect your people, premises and profits, day and night.' },
+  { label: 'Vacant Property', desc: 'An empty property shouldn’t be an easy target.' },
+];
+
+const systems = [
+  {
+    label: 'Intrusion Detection',
+    href: '/our-systems/intrusion-detection',
+    desc: 'A wide range of smart indoor and outdoor Ajax devices operate as a unified force to ensure protection against potential intrusion and deliver the best-in-class user experience.',
+  },
+  {
+    label: 'Truston Smart Site Security',
+    href: '/our-systems/smart-site-security',
+    desc: 'Experience award-winning products, indoor and outdoor solutions, operating as a unified force to ensure protection against potential intrusion all in one smart ecosystem.',
+  },
+  {
+    label: 'CCTV & Video Surveillance',
+    href: '/our-systems/cctv-video-surveillance',
+    desc: 'With cutting-edge technology and unparalleled reliability, AJAX surveillance solutions provide crystal-clear, real-time monitoring to protect your home, business and loved ones.',
+  },
+  {
+    label: 'Intelligent Access Systems',
+    href: '/our-systems/intelligent-access-systems',
+    desc: 'Embrace the future of secure access management and experience the freedom of worry-free key storage. Combine technology with robust design ensuring durability.',
+  },
+  {
+    label: 'Fire and Life Safety',
+    href: '/our-systems/fire-and-life-safety',
+    desc: 'Fire and life safety devices combine patented technologies, connectivity, ease of installation, and compliance with the most stringent international regulations.',
+  },
+  {
+    label: 'Comfort and Automation',
+    href: '/our-systems/comfort-and-automation',
+    desc: 'Enable users to control lighting and appliances, detect water leaks, manage water supply, and monitor air quality. Through automation, these devices reinforce on-site security.',
+  },
+];
+
+const facilityTypes = ['Apartment', 'House', 'Office', 'Business (shop, warehouse, cafe, etc.)'];
 ---
 
-<Layout title="Design and Support" description="Placeholder homepage — waiting on screenshots of the live site to rebuild this page.">
+<Layout title="TrustOn Security Systems | Intelligent Security Solutions" description="Protect your home and business with intelligent security systems designed for complete peace of mind. Licensed Ajax Systems Partner.">
+  <Header />
+
   <main>
-    <h1>Design and Support</h1>
-    <p>Homepage placeholder. Send a screenshot of the live page and we'll build this out.</p>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1>Professional Security Solutions</h1>
+          <p>
+            Protect your home and business with intelligent security systems designed for
+            complete peace of mind. As a licensed Ajax Systems Partner, TrustOn delivers
+            professional installation, AI-powered video surveillance, intrusion detection, fire
+            protection, and smart automation tailored to your needs.
+          </p>
+          <ul class="checklist">
+            <li>Authorised Ajax Installer</li>
+            <li>Professional Installation</li>
+            <li>Residential &amp; Commercial Solutions</li>
+          </ul>
+          <a class="btn" href="/contact">Request a Bespoke Quotation</a>
+        </div>
+        <div class="hero-media">
+          <div class="placeholder-media" style="aspect-ratio: 4/3;">Security equipment photo</div>
+          <div class="ajax-badge">AJAX &mdash; AUTHORIZED SECURITY COMPANY</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sector cards -->
+    <section class="sectors">
+      <div class="container sector-grid">
+        {sectors.map((sector) => (
+          <div class="sector-card">
+            <div class="placeholder-media" style="aspect-ratio: 4/3;">{sector.label} photo</div>
+            <h3>{sector.label}</h3>
+            <p>{sector.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Our Systems -->
+    <section class="systems">
+      <div class="container">
+        <h2 class="section-title">Our Systems</h2>
+        <div class="systems-grid">
+          {systems.map((system) => (
+            <a class="system-card" href={system.href}>
+              <div class="placeholder-media" style="aspect-ratio: 16/10;">{system.label} photo</div>
+              <h3>{system.label}</h3>
+              <p>{system.desc}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Floorplan -->
+    <section class="floorplan">
+      <div class="container floorplan-inner">
+        <p class="floorplan-copy">
+          All Ajax devices have a sleek design and fit perfectly into any interior. Wireless
+          devices can be installed even after repairs, as they do not require additional wiring.
+        </p>
+        <div class="placeholder-media" style="aspect-ratio: 16/10;">Floorplan device diagram</div>
+      </div>
+    </section>
+
+    <!-- Ajax TV -->
+    <section class="ajax-tv">
+      <div class="container ajax-tv-inner">
+        <div class="placeholder-media video-placeholder" style="aspect-ratio: 16/9;">
+          Video surveillance brought to the TV screen
+        </div>
+        <div class="ajax-tv-copy">
+          <h2>Get started with Ajax TV</h2>
+          <p>
+            Ajax TV app displays live camera feeds in real time, making large-screen viewing
+            convenient for daily monitoring at residential or commercial sites. The app is
+            available for Android TV devices, and works without extra hardware or complex setup.
+          </p>
+          <h3>Smooth integration within the Ajax ecosystem</h3>
+          <p>
+            Ajax TV is synchronized with other Ajax apps, allowing access to live video feeds
+            directly on the TV screen without requiring additional setup. All system management
+            and configuration remain in mobile and desktop apps.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Free Quotation -->
+    <section class="quote">
+      <div class="container quote-inner">
+        <h2>Free Quotation</h2>
+        <p class="quote-subtitle">Complete the following questionnaire to receive a free quotation</p>
+
+        <div class="quote-card">
+          <p class="quote-step">Step 1 of 5</p>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 20%;"></div>
+          </div>
+          <p class="quote-question">Choose facility type <span class="required">*</span></p>
+          <div class="facility-grid">
+            {facilityTypes.map((facility) => (
+              <button type="button" class="facility-option">{facility}</button>
+            ))}
+          </div>
+          <button type="button" class="btn">Next</button>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <Footer />
 </Layout>
+
+<style>
+  .hero {
+    background: var(--near-black);
+    padding: 64px 0;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .hero-copy p {
+    color: var(--gray-text);
+    line-height: 1.7;
+  }
+
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+  }
+
+  .checklist li {
+    color: var(--gray-text);
+    padding: 4px 0;
+  }
+
+  .checklist li::before {
+    content: '\2713';
+    color: var(--red);
+    margin-right: 8px;
+    font-weight: 700;
+  }
+
+  .ajax-badge {
+    margin-top: 12px;
+    text-align: center;
+    color: var(--gray-text);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+
+  .sectors {
+    padding: 48px 0;
+  }
+
+  .sector-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+
+  .sector-card h3 {
+    font-size: 1rem;
+    margin: 12px 0 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .sector-card p {
+    color: var(--gray-text);
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .systems {
+    padding: 48px 0 64px;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .systems-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .system-card {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .system-card h3 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 12px 0 6px;
+  }
+
+  .system-card p {
+    color: var(--gray-text);
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .floorplan {
+    background: var(--white);
+    color: var(--black);
+    padding: 64px 0;
+  }
+
+  .floorplan-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .floorplan-copy {
+    color: #4a4a4a;
+    line-height: 1.7;
+  }
+
+  .ajax-tv {
+    background: var(--black);
+    padding: 64px 0;
+  }
+
+  .ajax-tv-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .video-placeholder {
+    border-radius: 8px;
+  }
+
+  .ajax-tv-copy p {
+    color: var(--gray-text);
+    line-height: 1.7;
+  }
+
+  .ajax-tv-copy h2 {
+    margin-bottom: 12px;
+  }
+
+  .ajax-tv-copy h3 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    margin: 16px 0 8px;
+  }
+
+  .quote {
+    background: var(--near-black);
+    padding: 64px 0;
+    position: relative;
+  }
+
+  .quote-inner {
+    text-align: center;
+  }
+
+  .quote-subtitle {
+    color: var(--gray-text);
+    margin: 8px 0 32px;
+  }
+
+  .quote-card {
+    background: var(--white);
+    color: var(--black);
+    border-radius: 12px;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 32px;
+    text-align: left;
+  }
+
+  .quote-step {
+    font-size: 0.85rem;
+    color: #6a6a6a;
+    margin: 0 0 8px;
+  }
+
+  .progress-bar {
+    height: 6px;
+    background: #e5e5e5;
+    border-radius: 3px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--red);
+  }
+
+  .quote-question {
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .required {
+    color: var(--red);
+  }
+
+  .facility-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .facility-option {
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--black);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+  }
+
+  .facility-option:hover {
+    border-color: var(--red);
+  }
+
+  @media (max-width: 900px) {
+    .hero-inner,
+    .floorplan-inner,
+    .ajax-tv-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .sector-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .systems-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .facility-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,207 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const features = [
+  { label: 'Visual verification of alarms' },
+  { label: 'Connection to the central monitoring station (CMS)' },
+  { label: 'Instant alarm at the push of a panic button or duress code' },
+];
+---
+
+<Layout title="Intrusion Detection | TrustOn Security Systems" description="Detect the threat. Verify it. Act on it. Intrusion detection systems from TrustOn Security Systems.">
+  <Header />
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="placeholder-media hero-media" aria-hidden="true">Hand unlocking phone photo</div>
+      <div class="hero-overlay">
+        <h1>Intrusion Detection</h1>
+        <div class="divider"></div>
+        <p>Detect the threat. Verify it. Act on it.</p>
+        <a class="btn" href="/contact">Request a Bespoke Quotation</a>
+      </div>
+    </section>
+
+    <!-- More than CCTV -->
+    <section class="more-than-cctv">
+      <div class="container more-than-cctv-grid">
+        <div class="copy">
+          <h2>More than CCTV</h2>
+          <p>
+            A camera gives you a picture. A complete security service gives you a response.
+            Video surveillance can work alongside intrusion detection, external protection and
+            other elements of your TrustOn security package. When something triggers, video can
+            help establish whether you're dealing with a genuine threat, an innocent activation
+            or something requiring action. Ajax also supports visual alarm verification, allowing
+            monitoring operators to receive images and access video in connection with alarms.
+          </p>
+        </div>
+        <div class="app-mock">
+          <p class="app-mock-title">Configure video alarms</p>
+          <div class="app-mock-row">
+            <span>Video alarms</span>
+            <span class="app-mock-value">No alerts</span>
+            <span class="app-mock-chevron">&#8250;</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="container feature-grid">
+        {features.map((feature) => (
+          <div class="feature-card">
+            <div class="placeholder-media" style="aspect-ratio: 4/3;">{feature.label} photo</div>
+            <p>{feature.label}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container">
+        <h2>Ready to protect your facility?</h2>
+        <p>Need advice on how to secure your home or business premises with an Ajax alarm system?</p>
+        <p>Simply fill out the form, and our team of experts will respond as quickly as possible to address your alarm installation needs.</p>
+        <a class="btn" href="/contact">Get in Touch</a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .hero {
+    position: relative;
+    height: 480px;
+  }
+
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    align-items: flex-start;
+    padding-top: 24px;
+  }
+
+  .hero-overlay {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 120px 32px 0;
+  }
+
+  .hero-overlay h1 {
+    background: rgba(13, 13, 15, 0.75);
+    display: inline-block;
+    padding: 16px 48px;
+  }
+
+  .divider {
+    width: 80px;
+    height: 3px;
+    background: var(--red);
+    margin: 16px auto;
+  }
+
+  .hero-overlay p {
+    color: var(--white);
+    margin: 0 0 24px;
+    font-size: 1.1rem;
+  }
+
+  .more-than-cctv {
+    background: var(--black);
+    padding: 64px 0;
+  }
+
+  .more-than-cctv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+
+  .copy h2 {
+    margin-bottom: 20px;
+  }
+
+  .copy p {
+    color: var(--gray-text);
+    line-height: 1.7;
+  }
+
+  .app-mock {
+    background: var(--white);
+    color: var(--black);
+    border-radius: 16px;
+    padding: 32px;
+  }
+
+  .app-mock-title {
+    font-weight: 600;
+    text-align: center;
+    margin: 0 0 24px;
+  }
+
+  .app-mock-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f2f2f2;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 0.9rem;
+  }
+
+  .app-mock-value {
+    color: #6a6a6a;
+    margin-left: auto;
+    margin-right: 8px;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .feature-card p {
+    text-align: center;
+    margin-top: 12px;
+    font-weight: 600;
+  }
+
+  .cta {
+    background: var(--white);
+    color: var(--black);
+    text-align: center;
+    padding: 80px 0;
+  }
+
+  .cta h2 {
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .cta p {
+    color: #4a4a4a;
+    max-width: 600px;
+    margin: 0 auto 8px;
+  }
+
+  .cta .btn {
+    margin-top: 24px;
+  }
+
+  @media (max-width: 900px) {
+    .more-than-cctv-grid,
+    .feature-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

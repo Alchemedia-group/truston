@@ -1,0 +1,377 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const values = [
+  {
+    title: 'Integrity - Security you can trust',
+    desc: 'We give clear, honest advice and recommend solutions based on what our customers genuinely need. From system design to installation and ongoing support, we take responsibility for doing things properly.',
+  },
+  {
+    title: 'Innovation - Technology with purpose.',
+    desc: 'We embrace new technology when it makes security smarter, faster or more effective. Innovation isn’t about adding more devices; it’s about using the right technology together to deliver better protection.',
+  },
+  {
+    title: 'Clarity - Intelligent doesn’t have to mean complicated.',
+    desc: 'Security technology can be sophisticated without being difficult to understand. We cut through the jargon, explain what matters and make intelligent security straightforward to use and manage.',
+  },
+  {
+    title: 'Resilience - Ready when it matters.',
+    desc: 'Security has to perform when something goes wrong. We design dependable, adaptable systems around real risks, giving our customers confidence that their protection is working today and can evolve with their needs tomorrow.',
+  },
+];
+
+const stats = [
+  'Constantly Evolving',
+  '24/7:365',
+  'First Class Service',
+  'Bespoke Solutions',
+  'Competitive Rates',
+  'Rapid Deployment',
+];
+
+const testimonials = [
+  {
+    quote: 'From the initial survey through to installation, TrustOn made everything straightforward. The Ajax system is incredibly easy to use, and the team took the time to make sure we understood exactly how everything worked.',
+    author: 'Client',
+    date: 'January 2026',
+  },
+  {
+    quote: 'We wanted more than just an alarm. TrustOn designed an Ajax system around our property, combining detection, cameras and remote control into one simple solution. It feels like a completely different level of security',
+    author: 'Client',
+    date: 'August 2026',
+  },
+  {
+    quote: 'The installation was tidy, professional and clearly explained. We now have instant alerts and complete visibility of the property wherever we are — with the reassurance that TrustOn is there if we ever need support',
+    author: 'Client',
+    date: 'December 2025',
+  },
+];
+---
+
+<Layout title="About Us | TrustOn Security Systems" description="TrustOn Security Systems is part of the wider TrustOn family, building on more than a decade of experience protecting homes, businesses and sites with trusted, professional security services.">
+  <Header />
+
+  <main>
+    <!-- About hero -->
+    <section class="about-hero">
+      <div class="container about-hero-inner">
+        <div class="about-copy">
+          <h1>About Us</h1>
+          <p>
+            TrustOn Security Systems is part of the wider TrustOn family, building on more than
+            a decade of experience protecting homes, businesses and sites with trusted,
+            professional security services. We bring together intelligent technology, expert
+            system design and the wider capabilities of TrustOn - including monitoring,
+            keyholding, alarm response, mobile patrols and on-site security - to create joined-up
+            solutions built around each customer and their risks. Rather than simply installing
+            equipment, we look at the whole picture, combining smart security systems with the
+            people, support and response behind them to deliver protection that is simple to
+            use, dependable and designed for the real world.
+          </p>
+        </div>
+        <div class="placeholder-media" style="aspect-ratio: 16/9;">TrustOn van photo</div>
+      </div>
+    </section>
+
+    <!-- Mission & Values -->
+    <section class="mission-values">
+      <div class="container mission-values-grid">
+        <div class="mission">
+          <h2>Mission<br /><span class="accent">Statement</span></h2>
+          <div class="mission-icon" aria-hidden="true">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z" />
+              <circle cx="12" cy="11" r="3" />
+            </svg>
+          </div>
+          <p>
+            TrustOn Security Systems combines proven technology, expert design and local
+            knowledge to create integrated security solutions built around real-world risks. We
+            protect people, property and everyday life with systems that are easy to understand,
+            simple to use and ready when they're needed most.
+          </p>
+        </div>
+
+        <div class="values">
+          <h2>Our<br /><span class="accent">Values</span></h2>
+          <ul class="values-list">
+            {values.map((value) => (
+              <li>
+                <div class="value-icon" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                </div>
+                <div>
+                  <h3>{value.title}</h3>
+                  <p>{value.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Backed by TrustOn stats -->
+    <section class="stats">
+      <div class="container">
+        <h2 class="stats-title">Intelligent security. Designed around you.</h2>
+        <p class="stats-subtitle">Backed by TrustOn</p>
+        <div class="stats-grid">
+          {stats.map((stat) => (
+            <div class="stat-item">
+              <div class="stat-icon" aria-hidden="true">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="9" />
+                </svg>
+              </div>
+              <p>{stat}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+        <h2 class="testimonials-title">Testimonials</h2>
+        <p class="testimonials-subtitle">
+          We take pride in delivering security solutions that make a real difference. Here's what
+          our clients have to say about working with TrustOn Security Systems
+        </p>
+
+        <div class="testimonials-carousel">
+          <button type="button" class="carousel-arrow" aria-label="Previous testimonial">&#10094;</button>
+          <div class="testimonials-track">
+            {testimonials.map((t) => (
+              <div class="testimonial-card">
+                <p class="quote">{t.quote}</p>
+                <p class="author">{t.author}</p>
+                <p class="date">{t.date}</p>
+              </div>
+            ))}
+          </div>
+          <button type="button" class="carousel-arrow" aria-label="Next testimonial">&#10095;</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .about-hero {
+    background: var(--near-black);
+    padding: 64px 0;
+  }
+
+  .about-hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .about-copy h1 {
+    color: var(--white);
+    margin-bottom: 8px;
+    border-bottom: 3px solid var(--red);
+    display: inline-block;
+    padding-bottom: 8px;
+  }
+
+  .about-copy p {
+    color: var(--gray-text);
+    line-height: 1.7;
+    margin-top: 20px;
+  }
+
+  .mission-values {
+    padding: 64px 0;
+  }
+
+  .mission-values-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+  }
+
+  .mission h2,
+  .values h2 {
+    font-size: 1.8rem;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+
+  .accent {
+    color: var(--red);
+  }
+
+  .mission-icon {
+    color: var(--red);
+    margin-bottom: 16px;
+  }
+
+  .mission p {
+    color: var(--gray-text);
+    line-height: 1.7;
+  }
+
+  .values-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .values-list li {
+    display: flex;
+    gap: 16px;
+  }
+
+  .value-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--near-black);
+    border: 2px solid var(--red);
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .values-list h3 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0 0 6px;
+  }
+
+  .values-list p {
+    color: var(--gray-text);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .stats {
+    background: var(--near-black);
+    padding: 64px 0;
+    text-align: center;
+  }
+
+  .stats-title {
+    margin-bottom: 8px;
+  }
+
+  .stats-subtitle {
+    color: var(--red);
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    margin: 0 0 40px;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 24px;
+  }
+
+  .stat-icon {
+    color: var(--red);
+    margin: 0 auto 12px;
+    width: fit-content;
+  }
+
+  .stat-item p {
+    font-size: 0.85rem;
+    color: var(--gray-text);
+  }
+
+  .testimonials {
+    padding: 64px 0;
+    text-align: center;
+  }
+
+  .testimonials-title {
+    margin-bottom: 12px;
+  }
+
+  .testimonials-subtitle {
+    color: var(--gray-text);
+    max-width: 700px;
+    margin: 0 auto 40px;
+  }
+
+  .testimonials-carousel {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .carousel-arrow {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .testimonials-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    flex: 1;
+  }
+
+  .testimonial-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    text-align: left;
+  }
+
+  .testimonial-card .quote {
+    color: var(--gray-text);
+    font-style: italic;
+    line-height: 1.6;
+    margin: 0 0 16px;
+  }
+
+  .testimonial-card .author {
+    margin: 0;
+    color: var(--gray-text);
+    font-size: 0.9rem;
+  }
+
+  .testimonial-card .date {
+    margin: 4px 0 0;
+    color: var(--red);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 900px) {
+    .about-hero-inner,
+    .mission-values-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .testimonials-track {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

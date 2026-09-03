@@ -1,0 +1,187 @@
+---
+const systemLinks = [
+  { label: 'Intrusion Detection', href: '/our-systems/intrusion-detection' },
+  { label: 'Truston Smart Site Security', href: '/our-systems/smart-site-security' },
+  { label: 'CCTV & Video Surveillance', href: '/our-systems/cctv-video-surveillance' },
+  { label: 'Intelligent Access Systems', href: '/our-systems/intelligent-access-systems' },
+  { label: 'Fire and Life Safety', href: '/our-systems/fire-and-life-safety' },
+  { label: 'Comfort and Automation', href: '/our-systems/comfort-and-automation' },
+];
+
+const aboutLinks = [
+  { label: 'About Us', href: '/about' },
+  { label: 'Testimonials', href: '/about#testimonials' },
+];
+---
+
+<header class="site-header">
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <a class="top-link" href="mailto:Sales@TrustonSystems.co.uk">Sales@TrustonSystems.co.uk</a>
+      <a class="top-link" href="tel:03300436280">Call us today: 03300 436280</a>
+    </div>
+  </div>
+
+  <div class="main-bar">
+    <div class="container main-bar-inner">
+      <a class="logo" href="/">
+        <span class="logo-truston">Trust<span class="logo-o">0</span>n</span>
+        <span class="logo-sub">Security Systems</span>
+      </a>
+
+      <nav class="nav" aria-label="Main navigation">
+        <div class="nav-item has-dropdown">
+          <a href="/about">About Us <span class="chevron">&#9662;</span></a>
+          <div class="dropdown">
+            {aboutLinks.map((link) => (
+              <a href={link.href}>{link.label}</a>
+            ))}
+          </div>
+        </div>
+
+        <div class="nav-item has-dropdown">
+          <a href="/our-systems">Our Systems <span class="chevron">&#9662;</span></a>
+          <div class="dropdown">
+            {systemLinks.map((link) => (
+              <a href={link.href}>{link.label}</a>
+            ))}
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="/news">News</a>
+        </div>
+        <div class="nav-item">
+          <a href="/careers">Careers</a>
+        </div>
+
+        <a class="btn contact-btn" href="/contact">Contact Us</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--black);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .top-bar {
+    background: #000000;
+    font-size: 0.85rem;
+  }
+
+  .top-bar-inner {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 24px;
+  }
+
+  .top-link {
+    text-decoration: none;
+    color: var(--gray-text);
+  }
+
+  .top-link:hover {
+    color: var(--white);
+  }
+
+  .main-bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    line-height: 1;
+  }
+
+  .logo-truston {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--white);
+  }
+
+  .logo-o {
+    color: var(--red);
+  }
+
+  .logo-sub {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--red);
+    margin-top: 2px;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-item > a {
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .nav-item > a:hover {
+    color: var(--red);
+  }
+
+  .chevron {
+    font-size: 0.65rem;
+  }
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--near-black);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    min-width: 240px;
+    padding: 8px 0;
+    z-index: 10;
+  }
+
+  .has-dropdown:hover .dropdown {
+    display: block;
+  }
+
+  .dropdown a {
+    display: block;
+    padding: 10px 16px;
+    text-decoration: none;
+    color: var(--gray-text);
+    font-size: 0.9rem;
+  }
+
+  .dropdown a:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .contact-btn {
+    padding: 10px 20px;
+  }
+
+  @media (max-width: 900px) {
+    .nav {
+      display: none;
+    }
+  }
+</style>
