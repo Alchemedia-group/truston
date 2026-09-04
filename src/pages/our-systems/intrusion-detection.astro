@@ -42,13 +42,16 @@ const packageOptions = [
 const heroVideo = getMedia('Intruder Detection(1)');
 const introMedia = getMedia('intruder intro');
 
-const homeRenderMedia = getMedia('Home Render');
+const homeRenderMedia = getMedia('Homes Render');
 const homeHotspots = [
-  { x: 50, y: 12, title: 'Roof & Loft', description: 'Hotspot info coming soon.' },
-  { x: 20, y: 45, title: 'Front Door', description: 'Hotspot info coming soon.' },
-  { x: 80, y: 45, title: 'Windows', description: 'Hotspot info coming soon.' },
-  { x: 35, y: 75, title: 'Living Areas', description: 'Hotspot info coming soon.' },
-  { x: 65, y: 85, title: 'Garden & Perimeter', description: 'Hotspot info coming soon.' },
+  { x: 37, y: 8, title: 'Central Hub', description: 'Hotspot info coming soon.' },
+  { x: 50, y: 10, title: 'Motion Detector', description: 'Hotspot info coming soon.' },
+  { x: 35, y: 20, title: 'Exterior Camera', description: 'Hotspot info coming soon.' },
+  { x: 58, y: 20, title: 'Video Intercom', description: 'Hotspot info coming soon.' },
+  { x: 56, y: 29, title: 'Keypad', description: 'Hotspot info coming soon.' },
+  { x: 46, y: 39, title: 'Door & Window Sensors', description: 'Hotspot info coming soon.' },
+  { x: 41, y: 64, title: 'Video Doorbell', description: 'Hotspot info coming soon.' },
+  { x: 79, y: 43, title: 'Garage Sensor', description: 'Hotspot info coming soon.' },
 ];
 ---
 
@@ -135,7 +138,7 @@ const homeHotspots = [
             {homeRenderMedia ? (
               <img class="render-image" src={homeRenderMedia} alt="Home security render" loading="lazy" />
             ) : (
-              <div class="placeholder-media render-image" style="aspect-ratio: 4 / 3;">Home render image</div>
+              <div class="placeholder-media render-image" style="aspect-ratio: 1748 / 984;">Home render image</div>
             )}
 
             {homeHotspots.map((hotspot, index) => (
@@ -315,7 +318,7 @@ const homeHotspots = [
   .render-wrap {
     position: relative;
     display: inline-block;
-    max-width: 640px;
+    max-width: 960px;
     width: 100%;
   }
 
@@ -365,7 +368,7 @@ const homeHotspots = [
 
   .hotspot-panel {
     width: 100%;
-    max-width: 640px;
+    max-width: 960px;
     min-height: 88px;
     background: #f5f5f5;
     border: 1px solid #e2e2e2;
@@ -487,6 +490,16 @@ const homeHotspots = [
 
     .tile-grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hotspot {
+      width: 18px;
+      height: 18px;
+      border-width: 2px;
+    }
+
+    .hotspot-pulse {
+      inset: -5px;
     }
   }
 
