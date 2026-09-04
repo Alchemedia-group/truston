@@ -165,6 +165,32 @@ const ajaxTvMedia = getMedia('Get Started With Ajax');
       </div>
     </section>
 
+    <!-- Detail -->
+    <section class="detail">
+      <div class="container detail-inner">
+        <h2>One system. Every part of your property.</h2>
+        <p>
+          From a family home to a working farm, retail unit, construction site or vacant
+          property, TrustOn brings intrusion detection, video surveillance, access control, fire
+          and life safety and automation together in one connected system.
+        </p>
+        <p>
+          Everything has a purpose: detect earlier, verify faster, and put the right information
+          in your hands - or ours - the moment it matters.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container">
+        <h2>Ready to get started?</h2>
+        <p>Need advice on the right security system for your home or business?</p>
+        <p>Simply fill out the form, and our team of experts will respond as quickly as possible to address your security needs.</p>
+        <a class="btn" href="#quote-form">Start your bespoke quote</a>
+      </div>
+    </section>
+
     <!-- Free Quotation -->
     <QuoteForm />
   </main>
@@ -338,5 +364,48 @@ const ajaxTvMedia = getMedia('Get Started With Ajax');
     .systems-grid {
       grid-template-columns: 1fr;
     }
+  }
+
+  .detail {
+    background: var(--near-black);
+    padding: 64px 0;
+  }
+
+  .detail-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .detail-inner h2 {
+    margin-bottom: 20px;
+  }
+
+  .detail-inner p {
+    color: var(--gray-text);
+    line-height: 1.7;
+    text-align: left;
+  }
+
+  .cta {
+    background: var(--white);
+    color: var(--black);
+    text-align: center;
+    padding: 80px 0;
+  }
+
+  .cta h2 {
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .cta p {
+    color: #4a4a4a;
+    max-width: 600px;
+    margin: 0 auto 8px;
+  }
+
+  .cta .btn {
+    margin-top: 24px;
   }
 </style>

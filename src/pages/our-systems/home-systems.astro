@@ -7,6 +7,29 @@ import { getMedia, isVideo } from '../../lib/media';
 
 const heroMedia = getMedia('Truston Home Security');
 
+const introFeatures = [
+  {
+    label: 'Intrusion Detection',
+    desc: 'Protect doors, windows and vulnerable areas with intelligent sensors that detect intrusion before it becomes a problem.',
+    icon: '<path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/>',
+  },
+  {
+    label: 'Video Verification',
+    desc: "See what's happening around your property with smart cameras and video doorbells.",
+    icon: '<rect x="2" y="7" width="14" height="10" rx="2"/><path d="M16 10l5-3v10l-5-3z"/>',
+  },
+  {
+    label: 'Fire & Environmental',
+    desc: 'Detect fire, smoke, carbon monoxide, flooding and environmental changes before they become serious.',
+    icon: '<path d="M12 2c1.5 3-2 4-2 7a2 2 0 0 0 4 0c0-1-.5-2-.5-2s2 2 2 5a3.5 3.5 0 0 1-7 0c0-5 3.5-6 3.5-10z"/>',
+  },
+  {
+    label: 'Smart Control',
+    desc: 'Control your entire security system from your smartphone, tablet or dedicated control devices.',
+    icon: '<rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/>',
+  },
+];
+
 const homeRenderMedia = getMedia('Homes Render');
 const homeHotspots = [
   { x: 37.6, y: 7.1, title: 'LeaksProtect', description: 'Wireless water leak detector.' },
@@ -56,21 +79,33 @@ const homeHotspots = [
 
     <!-- Intro -->
     <section class="intro">
-      <div class="container intro-copy">
-        <p>
-          Your home security should work as one connected ecosystem. Intrusion detection, video
-          surveillance, fire and life safety, access control and automation can all work together
-          to protect the people and places that matter most.
-        </p>
-        <p>
-          With TrustOn Security Systems, your system is designed around your home and your
-          routine - giving you greater visibility, simple control and instant awareness when
-          something needs your attention.
-        </p>
-        <p>
-          It is intelligent security without unnecessary complexity: easy to live with every day
-          and ready to protect you when it matters most.
-        </p>
+      <div class="container intro-grid">
+        <div class="intro-copy">
+          <p>
+            Your home security should work as one connected ecosystem. Intrusion detection, video
+            surveillance, fire and life safety, access control and automation can all work
+            together to protect the people and places that matter most.
+          </p>
+          <p>
+            With TrustOn Security Systems, your system is designed around your home and your
+            routine - giving you greater visibility, simple control and instant awareness when
+            something needs your attention.
+          </p>
+          <p>
+            It is intelligent security without unnecessary complexity: easy to live with every
+            day and ready to protect you when it matters most.
+          </p>
+        </div>
+
+        <div class="intro-features">
+          {introFeatures.map((feature) => (
+            <div class="intro-feature-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" set:html={feature.icon} />
+              <h3>{feature.label}</h3>
+              <p>{feature.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
 
@@ -189,14 +224,48 @@ const homeHotspots = [
     padding: 64px 0;
   }
 
-  .intro-copy {
-    max-width: 760px;
-    margin: 0 auto;
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
   }
 
   .intro-copy p {
     color: var(--gray-text);
     line-height: 1.7;
+  }
+
+  .intro-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .intro-feature-card {
+    background: var(--near-black);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+  }
+
+  .intro-feature-card svg {
+    width: 32px;
+    height: 32px;
+    color: var(--red);
+    margin-bottom: 14px;
+  }
+
+  .intro-feature-card h3 {
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+
+  .intro-feature-card p {
+    color: var(--gray-text);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0;
   }
 
   .home-render-section {
@@ -368,6 +437,10 @@ const homeHotspots = [
   }
 
   @media (max-width: 900px) {
+    .intro-grid {
+      grid-template-columns: 1fr;
+    }
+
     .hotspot {
       width: 18px;
       height: 18px;
@@ -376,6 +449,12 @@ const homeHotspots = [
 
     .hotspot-pulse {
       inset: -5px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .intro-features {
+      grid-template-columns: 1fr;
     }
   }
 </style>

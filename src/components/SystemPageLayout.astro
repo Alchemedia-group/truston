@@ -14,6 +14,8 @@ interface Props {
   detailHeading: string;
   detailParagraphs: string[];
   quote?: string;
+  ctaHeading?: string;
+  ctaParagraphs?: string[];
 }
 
 const {
@@ -26,6 +28,11 @@ const {
   detailHeading,
   detailParagraphs,
   quote,
+  ctaHeading = 'Ready to protect your facility?',
+  ctaParagraphs = [
+    'Need advice on how to secure your home or business premises with an Ajax alarm system?',
+    'Simply fill out the form, and our team of experts will respond as quickly as possible to address your alarm installation needs.',
+  ],
 } = Astro.props;
 ---
 
@@ -70,9 +77,10 @@ const {
     <!-- CTA -->
     <section class="cta">
       <div class="container">
-        <h2>Ready to protect your facility?</h2>
-        <p>Need advice on how to secure your home or business premises with an Ajax alarm system?</p>
-        <p>Simply fill out the form, and our team of experts will respond as quickly as possible to address your alarm installation needs.</p>
+        <h2>{ctaHeading}</h2>
+        {ctaParagraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
         <button type="button" class="btn" data-open-quote>Start your bespoke quote</button>
       </div>
     </section>

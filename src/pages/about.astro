@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import QuoteModal from '../components/QuoteModal.astro';
 import { getMedia } from '../lib/media';
 
 const values = [
@@ -195,9 +196,35 @@ const testimonials = [
         </div>
       </div>
     </section>
+
+    <!-- Detail -->
+    <section class="detail">
+      <div class="container detail-inner">
+        <h2>Technology backed by a team you can rely on.</h2>
+        <p>
+          Being an Authorised Ajax Installer means every system we design and install meets the
+          same professional standard, whatever the property or the risk.
+        </p>
+        <p>
+          But equipment alone isn't security. Our team is here before, during and after
+          installation - so you always know who to call.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container">
+        <h2>Ready to work with TrustOn?</h2>
+        <p>Want to find out more about how we work, or get a quote for your property?</p>
+        <p>Simply fill out the form, and our team of experts will respond as quickly as possible.</p>
+        <button type="button" class="btn" data-open-quote>Start your bespoke quote</button>
+      </div>
+    </section>
   </main>
 
   <Footer />
+  <QuoteModal />
 </Layout>
 
 <style>
@@ -445,6 +472,49 @@ const testimonials = [
     .testimonial-card[data-slot="2"] {
       display: none;
     }
+  }
+
+  .detail {
+    background: var(--near-black);
+    padding: 64px 0;
+  }
+
+  .detail-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .detail-inner h2 {
+    margin-bottom: 20px;
+  }
+
+  .detail-inner p {
+    color: var(--gray-text);
+    line-height: 1.7;
+    text-align: left;
+  }
+
+  .cta {
+    background: var(--white);
+    color: var(--black);
+    text-align: center;
+    padding: 80px 0;
+  }
+
+  .cta h2 {
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .cta p {
+    color: #4a4a4a;
+    max-width: 600px;
+    margin: 0 auto 8px;
+  }
+
+  .cta .btn {
+    margin-top: 24px;
   }
 </style>
 
