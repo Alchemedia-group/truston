@@ -41,6 +41,15 @@ const packageOptions = [
 
 const heroVideo = getMedia('Intruder Detection(1)');
 const introMedia = getMedia('intruder intro');
+
+const homeRenderMedia = getMedia('Home Render');
+const homeHotspots = [
+  { x: 50, y: 12, title: 'Roof & Loft', description: 'Hotspot info coming soon.' },
+  { x: 20, y: 45, title: 'Front Door', description: 'Hotspot info coming soon.' },
+  { x: 80, y: 45, title: 'Windows', description: 'Hotspot info coming soon.' },
+  { x: 35, y: 75, title: 'Living Areas', description: 'Hotspot info coming soon.' },
+  { x: 65, y: 85, title: 'Garden & Perimeter', description: 'Hotspot info coming soon.' },
+];
 ---
 
 <Layout title="Intrusion Detection | TrustOn Security Systems" description="An alarm should do more than make a noise. Intrusion detection systems from TrustOn Security Systems, designed around your property and the risks you actually face.">
@@ -110,6 +119,42 @@ const introMedia = getMedia('intruder intro');
             </div>
           );
         })}
+      </div>
+    </section>
+
+    <!-- Home protection hotspots -->
+    <section class="home-render-section">
+      <div class="container">
+        <div class="home-render-header">
+          <h2>See how your home is protected</h2>
+          <p>Explore the hotspots below to learn how intrusion detection covers every part of your property.</p>
+        </div>
+
+        <div class="render-stage">
+          <div class="render-wrap">
+            {homeRenderMedia ? (
+              <img class="render-image" src={homeRenderMedia} alt="Home security render" loading="lazy" />
+            ) : (
+              <div class="placeholder-media render-image" style="aspect-ratio: 4 / 3;">Home render image</div>
+            )}
+
+            {homeHotspots.map((hotspot, index) => (
+              <button
+                type="button"
+                class="hotspot"
+                style={`left: ${hotspot.x}%; top: ${hotspot.y}%;`}
+                data-index={index}
+                aria-label={hotspot.title}
+              >
+                <span class="hotspot-pulse"></span>
+              </button>
+            ))}
+          </div>
+
+          <div class="hotspot-panel" id="hotspot-panel" data-empty="true">
+            <p class="hotspot-panel-hint">Select a hotspot to learn more.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -238,6 +283,119 @@ const introMedia = getMedia('intruder intro');
     font-weight: 600;
   }
 
+  .home-render-section {
+    background: var(--white);
+    color: var(--black);
+    padding: 64px 0;
+  }
+
+  .home-render-header {
+    max-width: 640px;
+    margin: 0 auto 40px;
+    text-align: center;
+  }
+
+  .home-render-header h2 {
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+
+  .home-render-header p {
+    color: #4a4a4a;
+    line-height: 1.6;
+  }
+
+  .render-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .render-wrap {
+    position: relative;
+    display: inline-block;
+    max-width: 640px;
+    width: 100%;
+  }
+
+  .render-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+  }
+
+  .hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--red);
+    border: 3px solid var(--white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .hotspot-pulse {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px solid var(--red);
+    opacity: 0.6;
+    animation: hotspot-pulse 2s ease-out infinite;
+  }
+
+  @keyframes hotspot-pulse {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(1.6);
+      opacity: 0;
+    }
+  }
+
+  .hotspot.active {
+    background: var(--red-dark);
+  }
+
+  .hotspot-panel {
+    width: 100%;
+    max-width: 640px;
+    min-height: 88px;
+    background: #f5f5f5;
+    border: 1px solid #e2e2e2;
+    border-radius: 12px;
+    padding: 20px 24px;
+  }
+
+  .hotspot-panel[data-empty='true'] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hotspot-panel-hint {
+    color: #6a6a6a;
+    margin: 0;
+  }
+
+  .hotspot-panel h3 {
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .hotspot-panel p {
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin: 0;
+  }
+
   .backed-by-people {
     background: var(--near-black);
     padding: 64px 0;
@@ -338,3 +496,22 @@ const introMedia = getMedia('intruder intro');
     }
   }
 </style>
+
+<script define:vars={{ homeHotspots }}>
+  const hotspotButtons = document.querySelectorAll('.hotspot');
+  const panel = document.getElementById('hotspot-panel');
+
+  hotspotButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const index = Number(button.dataset.index);
+      const hotspot = homeHotspots[index];
+      if (!hotspot) return;
+
+      hotspotButtons.forEach((btn) => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      panel.dataset.empty = 'false';
+      panel.innerHTML = `<h3>${hotspot.title}</h3><p>${hotspot.description}</p>`;
+    });
+  });
+</script>
