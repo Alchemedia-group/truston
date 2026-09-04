@@ -99,13 +99,17 @@ const aboutLinks = [
         <button class="mobile-nav-toggle" type="button" data-target="mobile-systems" aria-expanded="false">
           Our Systems <span class="chevron">&#9662;</span>
         </button>
-        <div class="mobile-submenu" id="mobile-systems">
-          {homeSystemLinks.map((link) => (
-            <a href={link.href}>{link.label}</a>
-          ))}
-          {systemLinks.map((link) => (
-            <a href={link.href}>{link.label}</a>
-          ))}
+        <div class="mobile-submenu mobile-submenu-columns" id="mobile-systems">
+          <div class="mobile-submenu-column">
+            {homeSystemLinks.map((link) => (
+              <a href={link.href}>{link.label}</a>
+            ))}
+          </div>
+          <div class="mobile-submenu-column">
+            {systemLinks.map((link) => (
+              <a href={link.href}>{link.label}</a>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -393,7 +397,7 @@ const aboutLinks = [
   }
 
   .mobile-submenu.open {
-    max-height: 400px;
+    max-height: 500px;
   }
 
   .mobile-submenu a {
@@ -406,6 +410,25 @@ const aboutLinks = [
 
   .mobile-submenu a:hover {
     color: var(--white);
+  }
+
+  .mobile-submenu-columns {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .mobile-submenu-column {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .mobile-submenu-column + .mobile-submenu-column {
+    border-left: 2px solid var(--red);
+  }
+
+  .mobile-submenu-columns .mobile-submenu-column a {
+    padding-left: 20px;
+    padding-right: 12px;
   }
 
   .mobile-contact-btn {
