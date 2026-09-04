@@ -120,8 +120,12 @@ const heroMedia = designedHero ?? getMedia('Careers');
         </div>
 
         <div class="careers-form-col">
-          <h2 class="careers-form-title">Apply Now</h2>
           <form class="careers-form" id="careers-form">
+            <div class="careers-form-header">
+              <svg class="careers-form-header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.5 3.5-7 8-7s8 2.5 8 7"/></svg>
+              <h2>Application Form</h2>
+            </div>
+
             <label class="field">
               <span>Email <span class="required">*</span></span>
               <input type="email" name="email" required />
@@ -174,6 +178,10 @@ const heroMedia = designedHero ?? getMedia('Careers');
               <textarea name="personal-statement" rows="3"></textarea>
             </label>
 
+            <div class="form-subheading">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/></svg>
+              <h3>Your Privacy Matters</h3>
+            </div>
             <p class="privacy-note">
               TrustOn Security is committed to protecting and respecting your privacy, and we'll
               only use your personal information to administer your account. If you consent to
@@ -200,12 +208,23 @@ const heroMedia = designedHero ?? getMedia('Careers');
               and respecting your privacy, please review our <a href="/docs/Privacy-Policy.pdf" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
             </p>
 
+            <div class="form-subheading">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21.44 11.05l-9.19 9.19a5.5 5.5 0 0 1-7.78-7.78l9.19-9.19a3.5 3.5 0 0 1 4.95 4.95l-9.19 9.19a1.5 1.5 0 0 1-2.12-2.12l8.49-8.49"/></svg>
+              <h3>Upload Documents</h3>
+            </div>
             <label class="field field-full">
               <span>Please upload any supporting documents below</span>
               <input type="file" name="documents" />
             </label>
 
-            <button type="submit" class="btn">Submit</button>
+            <button type="submit" class="btn btn-submit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4"/></svg>
+              Submit Application
+            </button>
+            <p class="form-security-note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4"/></svg>
+              Your information is secure and will only be used for recruitment purposes.
+            </p>
           </form>
 
           <div class="careers-form-confirmation" id="careers-form-confirmation" hidden>
@@ -388,16 +407,51 @@ const heroMedia = designedHero ?? getMedia('Careers');
     min-width: 0;
   }
 
-  .careers-form-title {
-    margin-bottom: 16px;
-  }
-
   .careers-form,
   .careers-form-confirmation {
-    background: var(--white);
-    color: var(--black);
+    background: var(--black);
+    color: var(--white);
     padding: 24px;
     border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .careers-form-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .careers-form-header-icon {
+    width: 26px;
+    height: 26px;
+    color: var(--red);
+    flex-shrink: 0;
+  }
+
+  .careers-form-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .form-subheading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 18px 0 10px;
+  }
+
+  .form-subheading svg {
+    width: 20px;
+    height: 20px;
+    color: var(--red);
+    flex-shrink: 0;
+  }
+
+  .form-subheading h3 {
+    font-size: 0.95rem;
   }
 
   .careers-form-confirmation {
@@ -410,7 +464,7 @@ const heroMedia = designedHero ?? getMedia('Careers');
   }
 
   .confirmation-sub {
-    color: #4a4a4a;
+    color: var(--gray-text);
     font-weight: 400 !important;
   }
 
@@ -435,15 +489,34 @@ const heroMedia = designedHero ?? getMedia('Careers');
   .field input,
   .field textarea {
     padding: 7px 10px;
-    border: 1px solid #d0d0d0;
+    border: 1px solid var(--border);
     border-radius: 6px;
+    background: var(--near-black);
+    color: var(--white);
     font-family: var(--font-body);
     font-size: 0.85rem;
     resize: vertical;
   }
 
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: var(--gray-text);
+  }
+
   .field input[type='file'] {
     padding: 6px;
+  }
+
+  .field input[type='file']::file-selector-button {
+    background: var(--near-black);
+    color: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    margin-right: 10px;
+    cursor: pointer;
   }
 
   .required {
@@ -462,11 +535,12 @@ const heroMedia = designedHero ?? getMedia('Careers');
   .checkbox-field input {
     margin-top: 3px;
     flex-shrink: 0;
+    accent-color: var(--red);
   }
 
   .checkbox-subtext {
     display: block;
-    color: #6a6a6a;
+    color: var(--gray-text);
     font-size: 0.82rem;
     margin-top: 4px;
     line-height: 1.5;
@@ -486,7 +560,7 @@ const heroMedia = designedHero ?? getMedia('Careers');
   }
 
   .privacy-note {
-    color: #6a6a6a;
+    color: var(--gray-text);
     font-size: 0.78rem;
     line-height: 1.5;
     margin: 12px 0 6px;
@@ -502,6 +576,36 @@ const heroMedia = designedHero ?? getMedia('Careers');
     text-align: center;
     margin-top: 4px;
     padding: 11px 28px;
+  }
+
+  .btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .btn-submit svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  .form-security-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: var(--gray-text);
+    font-size: 0.75rem;
+    text-align: center;
+    margin: 12px 0 0;
+  }
+
+  .form-security-note svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
   }
 
   @media (max-width: 900px) {

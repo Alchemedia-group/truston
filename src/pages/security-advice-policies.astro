@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import QuoteModal from '../components/QuoteModal.astro';
 
 const docIcon = '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>';
 const certIcon = '<circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 7 22l5-3 5 3-1.5-9.5"/>';
@@ -93,14 +92,13 @@ const certificates = [
       <div class="container">
         <h2>Can't find what you're looking for?</h2>
         <p>Need a copy of a specific document, or have a compliance question for a tender or contract?</p>
-        <p>Simply fill out the form, and our team of experts will respond as quickly as possible.</p>
-        <button type="button" class="btn" data-open-quote>Start your bespoke quote</button>
+        <p>Get in touch and our team of experts will respond as quickly as possible.</p>
+        <a class="btn" href="/contact">Contact Us</a>
       </div>
     </section>
   </main>
 
   <Footer />
-  <QuoteModal />
 </Layout>
 
 <style>
