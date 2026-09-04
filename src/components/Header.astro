@@ -10,6 +10,10 @@ const systemLinks = [
   { label: 'Comfort & Automation', href: '/our-systems/comfort-and-automation' },
 ];
 
+const homeSystemLinks = [
+  { label: 'Home Systems', href: '/our-systems/home-systems' },
+];
+
 const aboutLinks = [
   { label: 'About Us', href: '/about' },
   { label: 'Testimonials', href: '/about#testimonials' },
@@ -41,10 +45,17 @@ const aboutLinks = [
 
         <div class="nav-item has-dropdown">
           <span class="nav-trigger" role="button" tabindex="0">Our Systems <span class="chevron">&#9662;</span></span>
-          <div class="dropdown">
-            {systemLinks.map((link) => (
-              <a href={link.href}>{link.label}</a>
-            ))}
+          <div class="dropdown dropdown-columns">
+            <div class="dropdown-column">
+              {homeSystemLinks.map((link) => (
+                <a href={link.href}>{link.label}</a>
+              ))}
+            </div>
+            <div class="dropdown-column">
+              {systemLinks.map((link) => (
+                <a href={link.href}>{link.label}</a>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -89,6 +100,9 @@ const aboutLinks = [
           Our Systems <span class="chevron">&#9662;</span>
         </button>
         <div class="mobile-submenu" id="mobile-systems">
+          {homeSystemLinks.map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))}
           {systemLinks.map((link) => (
             <a href={link.href}>{link.label}</a>
           ))}
@@ -191,8 +205,26 @@ const aboutLinks = [
     z-index: 10;
   }
 
+  .dropdown-columns {
+    display: none;
+    padding: 8px 0;
+  }
+
   .has-dropdown:hover .dropdown {
     display: block;
+  }
+
+  .has-dropdown:hover .dropdown-columns {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .dropdown-column {
+    min-width: 220px;
+  }
+
+  .dropdown-column + .dropdown-column {
+    border-left: 1px solid var(--border);
   }
 
   .dropdown a {

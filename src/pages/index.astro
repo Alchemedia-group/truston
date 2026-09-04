@@ -10,7 +10,7 @@ const sectors = [
   { label: 'Construction', media: 'Truston Construction Security', desc: 'Don’t let theft, trespass or vandalism delay your next deadline.' },
   { label: 'Farms', media: 'Truston Farm Security', desc: 'Protect your land, livestock and equipment from those who shouldn’t be there.' },
   { label: 'Retail', media: 'Truston Retail Security', desc: 'Protect your people, premises and profits, day and night.' },
-  { label: 'Homes', media: 'Truston Home Security', desc: 'Your home should feel safe, even when you’re not there.' },
+  { label: 'Homes', media: 'Truston Home Security', desc: 'Your home should feel safe, even when you’re not there.', href: '/our-systems/home-systems' },
 ];
 
 const systems = [
@@ -91,8 +91,9 @@ const ajaxTvMedia = getMedia('Get Started With Ajax');
       <div class="container sector-grid">
         {sectors.map((sector) => {
           const media = getMedia(sector.media);
+          const CardTag = sector.href ? 'a' : 'div';
           return (
-            <div class="sector-card">
+            <CardTag class="sector-card" {...(sector.href ? { href: sector.href } : {})}>
               {media ? (
                 isVideo(media) ? (
                   <video class="sector-media" src={media} style="aspect-ratio: 4/3;" autoplay muted loop playsinline />
@@ -104,7 +105,7 @@ const ajaxTvMedia = getMedia('Get Started With Ajax');
               )}
               <h3>{sector.label}</h3>
               <p>{sector.desc}</p>
-            </div>
+            </CardTag>
           );
         })}
       </div>
@@ -231,6 +232,12 @@ const ajaxTvMedia = getMedia('Get Started With Ajax');
 
   .sector-card {
     min-width: 0;
+    display: block;
+    text-decoration: none;
+  }
+
+  a.sector-card:hover h3 {
+    color: var(--red);
   }
 
   .sector-media {

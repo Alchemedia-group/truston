@@ -1,0 +1,401 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import QuoteModal from '../../components/QuoteModal.astro';
+import { getMedia, isVideo } from '../../lib/media';
+
+const heroMedia = getMedia('Truston Home Security');
+
+const homeRenderMedia = getMedia('Homes Render');
+const homeHotspots = [
+  { x: 37.6, y: 7.1, title: 'LeaksProtect', description: 'Wireless water leak detector.' },
+  { x: 34.9, y: 18.0, title: 'WaterStop', description: 'Wireless remotely controlled water shutoff valve.' },
+  { x: 27.9, y: 29.7, title: 'FireProtect', description: 'Wireless fire detector with heat, smoke, and CO sensors.' },
+  { x: 50.9, y: 8.8, title: 'Button', description: 'Panic button / smart button.' },
+  { x: 57.8, y: 19.0, title: 'CurtainCam Outdoor', description: 'Dual-technology curtain motion detector with extended photo verification possibilities. For outdoor installation at a height of 2–4 m.' },
+  { x: 43.1, y: 21.3, title: 'IndoorCam', description: 'Indoor Wi-Fi security camera with PIR motion detector and built-in AI.' },
+  { x: 38.9, y: 41.2, title: 'HomeSiren', description: 'Wireless siren for indoors.' },
+  { x: 56.2, y: 30.5, title: 'StreetSiren', description: 'Wireless siren for indoor or outdoor use.' },
+  { x: 79.0, y: 46.0, title: 'CombiProtect', description: 'IR motion and glass break detector with microphone.' },
+  { x: 50.9, y: 37.9, title: 'TurretCam', description: 'Wired IP camera with a varifocal P-Iris lens, hybrid illumination, AI, built-in microphones and speaker, and audio and alarm inputs/outputs.' },
+  { x: 45.9, y: 42.5, title: 'DoorProtect', description: 'Reed-switch opening detector with shock and tilt sensors.' },
+  { x: 26.7, y: 47.1, title: 'LifeQuality', description: 'Wireless temperature, humidity, and CO2 monitor.' },
+  { x: 37.9, y: 51.8, title: 'KeyPad Touchscreen', description: 'Keypad with a touch screen, supporting authentication via Pass, Tag, smartphones, and codes.' },
+  { x: 31.6, y: 70.4, title: 'GlassProtect', description: 'Glass break detector with a microphone.' },
+  { x: 39.4, y: 69.7, title: 'Ajax Yale', description: 'The official integration that brings Yale smart locks into the Ajax ecosystem.' },
+  { x: 42.6, y: 67.4, title: 'DoorBell', description: 'Video doorbell with built-in AI, PIR sensor, and control via apps.' },
+  { x: 63.4, y: 65.5, title: 'Mobile App', description: 'Experience flexible system management, instant notifications, and core features in one app, including a panic button!' },
+  { x: 74.5, y: 62.3, title: 'Curtain Outdoor', description: 'Dual-technology curtain motion detector for outdoor and indoor use.' },
+  { x: 84.0, y: 77.0, title: 'SpaceControl Fob', description: 'A key fob for controlling security modes. Features a panic button for sending alarms to your inner circle and a security company in case of trouble.' },
+];
+---
+
+<Layout title="Home Systems | TrustOn Security Systems" description="Your home should feel safe, even when you're not there. TrustOn combines smart Ajax devices into one home security system built around how you actually live.">
+  <Header />
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      {heroMedia ? (
+        isVideo(heroMedia) ? (
+          <video class="hero-media" src={heroMedia} autoplay muted loop playsinline aria-hidden="true" />
+        ) : (
+          <img class="hero-media" src={heroMedia} alt="" aria-hidden="true" />
+        )
+      ) : (
+        <div class="placeholder-media hero-media" aria-hidden="true">Home security photo</div>
+      )}
+      <div class="hero-overlay">
+        <h1>Home Systems</h1>
+        <div class="divider"></div>
+        <p>Your home should feel safe, even when you're not there.</p>
+        <button type="button" class="btn" data-open-quote>Start your bespoke quote</button>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="intro">
+      <div class="container intro-copy">
+        <p>
+          Every home is different, and so are the risks it faces. TrustOn designs home security
+          systems around your property, your routine and the people and belongings you want to
+          protect - not a one-size-fits-all alarm box.
+        </p>
+        <p>
+          Smart Ajax devices work together as a single system: door and window sensors, motion
+          detection, indoor and outdoor cameras, sirens, a keypad and a mobile app all connect
+          through one hub, so you always know what's happening at home.
+        </p>
+        <p>
+          Add a video doorbell, smart lock integration, water leak and fire detection, and a
+          panic button for real emergencies, and you have a complete picture of your home's
+          security in one place.
+        </p>
+      </div>
+    </section>
+
+    <!-- Home protection hotspots -->
+    <section class="home-render-section">
+      <div class="container">
+        <div class="home-render-header">
+          <h2>See how your home is protected</h2>
+          <p>Explore the hotspots below to learn how intrusion detection covers every part of your property.</p>
+        </div>
+
+        <div class="render-stage">
+          <div class="render-wrap">
+            {homeRenderMedia ? (
+              <img class="render-image" src={homeRenderMedia} alt="Home security render" loading="lazy" />
+            ) : (
+              <div class="placeholder-media render-image" style="aspect-ratio: 1748 / 984;">Home render image</div>
+            )}
+
+            {homeHotspots.map((hotspot, index) => (
+              <button
+                type="button"
+                class="hotspot"
+                style={`left: ${hotspot.x}%; top: ${hotspot.y}%;`}
+                data-index={index}
+                aria-label={hotspot.title}
+              >
+                <span class="hotspot-pulse"></span>
+              </button>
+            ))}
+          </div>
+
+          <div class="hotspot-panel" id="hotspot-panel" data-empty="true">
+            <p class="hotspot-panel-hint">Select a hotspot to learn more.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detail -->
+    <section class="detail">
+      <div class="container detail-inner">
+        <h2>Technology when you need it. People when it matters.</h2>
+        <p>
+          Your home system can bring together intrusion detection, video verification, smart
+          access and environmental monitoring with TrustOn's monitoring, keyholding and alarm
+          response services.
+        </p>
+        <p>
+          Everything has a purpose: detect earlier, verify faster, and put the right information
+          in your hands - or ours - the moment it matters.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container">
+        <h2>Ready to protect your home?</h2>
+        <p>Need advice on how to secure your home with an Ajax alarm system?</p>
+        <p>Simply fill out the form, and our team of experts will respond as quickly as possible to address your alarm installation needs.</p>
+        <button type="button" class="btn" data-open-quote>Start your bespoke quote</button>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <QuoteModal />
+</Layout>
+
+<style>
+  .hero {
+    position: relative;
+    height: 480px;
+    overflow: hidden;
+  }
+
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-overlay {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 120px 32px 0;
+  }
+
+  .hero-overlay h1 {
+    background: rgba(13, 13, 15, 0.75);
+    display: inline-block;
+    padding: 16px 48px;
+  }
+
+  .divider {
+    width: 80px;
+    height: 3px;
+    background: var(--red);
+    margin: 16px auto;
+  }
+
+  .hero-overlay p {
+    color: var(--white);
+    margin: 0 0 24px;
+    font-size: 1.1rem;
+  }
+
+  .intro {
+    background: var(--black);
+    padding: 64px 0;
+  }
+
+  .intro-copy {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .intro-copy p {
+    color: var(--gray-text);
+    line-height: 1.7;
+  }
+
+  .home-render-section {
+    background: var(--white);
+    color: var(--black);
+    padding: 64px 0;
+  }
+
+  .home-render-header {
+    max-width: 640px;
+    margin: 0 auto 40px;
+    text-align: center;
+  }
+
+  .home-render-header h2 {
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+
+  .home-render-header p {
+    color: #4a4a4a;
+    line-height: 1.6;
+  }
+
+  .render-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .render-wrap {
+    position: relative;
+    display: inline-block;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  .render-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+  }
+
+  .hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--red);
+    border: 3px solid var(--white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    padding: 0;
+    animation: hotspot-fade 2.4s ease-in-out infinite;
+  }
+
+  @keyframes hotspot-fade {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .hotspot-pulse {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px solid var(--red);
+    opacity: 0.6;
+    animation: hotspot-pulse 2s ease-out infinite;
+  }
+
+  @keyframes hotspot-pulse {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(1.6);
+      opacity: 0;
+    }
+  }
+
+  .hotspot.active {
+    background: var(--red-dark);
+    animation: none;
+    opacity: 1;
+  }
+
+  .hotspot-panel {
+    width: 100%;
+    max-width: 960px;
+    min-height: 88px;
+    background: #f5f5f5;
+    border: 1px solid #e2e2e2;
+    border-radius: 12px;
+    padding: 20px 24px;
+  }
+
+  .hotspot-panel[data-empty='true'] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hotspot-panel-hint {
+    color: #6a6a6a;
+    margin: 0;
+  }
+
+  .hotspot-panel h3 {
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .hotspot-panel p {
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .detail {
+    background: var(--near-black);
+    padding: 64px 0;
+  }
+
+  .detail-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .detail-inner h2 {
+    margin-bottom: 20px;
+  }
+
+  .detail-inner p {
+    color: var(--gray-text);
+    line-height: 1.7;
+    text-align: left;
+  }
+
+  .cta {
+    background: var(--white);
+    color: var(--black);
+    text-align: center;
+    padding: 80px 0;
+  }
+
+  .cta h2 {
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .cta p {
+    color: #4a4a4a;
+    max-width: 600px;
+    margin: 0 auto 8px;
+  }
+
+  .cta .btn {
+    margin-top: 24px;
+  }
+
+  @media (max-width: 900px) {
+    .hotspot {
+      width: 18px;
+      height: 18px;
+      border-width: 2px;
+    }
+
+    .hotspot-pulse {
+      inset: -5px;
+    }
+  }
+</style>
+
+<script define:vars={{ homeHotspots }}>
+  const hotspotButtons = document.querySelectorAll('.hotspot');
+  const panel = document.getElementById('hotspot-panel');
+
+  hotspotButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const index = Number(button.dataset.index);
+      const hotspot = homeHotspots[index];
+      if (!hotspot) return;
+
+      hotspotButtons.forEach((btn) => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      panel.dataset.empty = 'false';
+      panel.innerHTML = `<h3>${hotspot.title}</h3><p>${hotspot.description}</p>`;
+    });
+  });
+</script>
