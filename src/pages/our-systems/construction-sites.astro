@@ -1,0 +1,455 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import QuoteModal from '../../components/QuoteModal.astro';
+import { getMedia, isVideo } from '../../lib/media';
+
+const heroMedia = getMedia('Truston Construction Security');
+
+const introFeatures = [
+  {
+    label: 'Intrusion Detection',
+    desc: 'Protect doors, windows and vulnerable areas with intelligent sensors that detect intrusion before it becomes a problem.',
+    icon: '<path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/>',
+  },
+  {
+    label: 'Video Verification',
+    desc: "See what's happening around your property with smart cameras and video doorbells.",
+    icon: '<rect x="2" y="7" width="14" height="10" rx="2"/><path d="M16 10l5-3v10l-5-3z"/>',
+  },
+  {
+    label: 'Fire & Environmental',
+    desc: 'Detect fire, smoke, carbon monoxide, flooding and environmental changes before they become serious.',
+    icon: '<path d="M12 2c1.5 3-2 4-2 7a2 2 0 0 0 4 0c0-1-.5-2-.5-2s2 2 2 5a3.5 3.5 0 0 1-7 0c0-5 3.5-6 3.5-10z"/>',
+  },
+  {
+    label: 'Smart Control',
+    desc: 'Control your entire security system from your smartphone, tablet or dedicated control devices.',
+    icon: '<rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/>',
+  },
+];
+
+const homeRenderMedia = getMedia('Construction Sites Render');
+const homeHotspots = [];
+---
+
+<Layout title="Construction Sites | TrustOn Security Systems" description="Protect the site. Protect the programme. TrustOn designs a flexible security ecosystem around the risks on your construction site.">
+  <Header />
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      {heroMedia ? (
+        isVideo(heroMedia) ? (
+          <video class="hero-media" src={heroMedia} autoplay muted loop playsinline aria-hidden="true" />
+        ) : (
+          <img class="hero-media" src={heroMedia} alt="" aria-hidden="true" />
+        )
+      ) : (
+        <div class="placeholder-media hero-media" aria-hidden="true">Construction site security photo</div>
+      )}
+      <div class="hero-overlay">
+        <h1>Construction Sites</h1>
+        <div class="divider"></div>
+        <p>Protect the site. Protect the programme.</p>
+        <button type="button" class="btn" data-open-quote>Start your bespoke quote</button>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="intro">
+      <div class="container intro-grid">
+        <div class="intro-copy">
+          <p>
+            Construction sites change constantly - and your security needs to change with them.
+          </p>
+          <p>
+            TrustOn designs a flexible security ecosystem around the risks on your site, combining
+            intelligent detection, video surveillance, controlled access and remote monitoring to
+            help protect equipment, materials and restricted areas.
+          </p>
+          <p>
+            Rather than relying on isolated cameras or alarms, each part of the system can work
+            together to provide better awareness of what is happening across the site and help
+            identify incidents sooner.
+          </p>
+          <p>As the project develops, the security can evolve with it.</p>
+        </div>
+
+        <div class="intro-features">
+          {introFeatures.map((feature) => (
+            <div class="intro-feature-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" set:html={feature.icon} />
+              <h3>{feature.label}</h3>
+              <p>{feature.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Site protection hotspots -->
+    <section class="home-render-section">
+      <div class="container">
+        <div class="home-render-header">
+          <h2>See how your site is protected</h2>
+          <p>Explore the hotspots below to learn how intrusion detection covers every part of your site.</p>
+        </div>
+
+        <div class="render-stage">
+          <div class="render-wrap">
+            {homeRenderMedia ? (
+              <img class="render-image" src={homeRenderMedia} alt="Construction site security render" loading="lazy" />
+            ) : (
+              <div class="placeholder-media render-image" style="aspect-ratio: 1748 / 984;">Construction site render image</div>
+            )}
+
+            {homeHotspots.map((hotspot, index) => (
+              <button
+                type="button"
+                class="hotspot"
+                style={`left: ${hotspot.x}%; top: ${hotspot.y}%;`}
+                data-index={index}
+                aria-label={hotspot.title}
+              >
+                <span class="hotspot-pulse"></span>
+              </button>
+            ))}
+          </div>
+
+          <div class="hotspot-panel" id="hotspot-panel" data-empty="true">
+            <p class="hotspot-panel-hint">Select a hotspot to learn more.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detail -->
+    <section class="detail">
+      <div class="container detail-inner">
+        <h2>Security designed around your site - not the other way around.</h2>
+        <p>
+          And where technology needs people behind it, TrustOn can provide monitoring, mobile
+          patrols, keyholding, alarm response and on-site security as part of one integrated
+          package.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container">
+        <h2>Ready to secure your construction site?</h2>
+        <p>Need advice on protecting equipment, materials and restricted areas on site?</p>
+        <p>Simply fill out the form, and our team of experts will respond as quickly as possible to address your security needs.</p>
+        <button type="button" class="btn" data-open-quote>Start your bespoke quote</button>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <QuoteModal />
+</Layout>
+
+<style>
+  .hero {
+    position: relative;
+    height: 480px;
+    overflow: hidden;
+  }
+
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-overlay {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 120px 32px 0;
+  }
+
+  .hero-overlay h1 {
+    background: rgba(13, 13, 15, 0.75);
+    display: inline-block;
+    padding: 16px 48px;
+  }
+
+  .divider {
+    width: 80px;
+    height: 3px;
+    background: var(--red);
+    margin: 16px auto;
+  }
+
+  .hero-overlay p {
+    color: var(--white);
+    margin: 0 0 24px;
+    font-size: 1.1rem;
+  }
+
+  .intro {
+    background: var(--black);
+    padding: 64px 0;
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .intro-copy p {
+    color: var(--gray-text);
+    line-height: 1.7;
+  }
+
+  .intro-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .intro-feature-card {
+    background: var(--near-black);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+  }
+
+  .intro-feature-card svg {
+    width: 32px;
+    height: 32px;
+    color: var(--red);
+    margin-bottom: 14px;
+  }
+
+  .intro-feature-card h3 {
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+
+  .intro-feature-card p {
+    color: var(--gray-text);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .home-render-section {
+    background: var(--white);
+    color: var(--black);
+    padding: 64px 0;
+  }
+
+  .home-render-header {
+    max-width: 640px;
+    margin: 0 auto 40px;
+    text-align: center;
+  }
+
+  .home-render-header h2 {
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+
+  .home-render-header p {
+    color: #4a4a4a;
+    line-height: 1.6;
+  }
+
+  .render-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .render-wrap {
+    position: relative;
+    display: inline-block;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  .render-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+  }
+
+  .hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--red);
+    border: 3px solid var(--white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    padding: 0;
+    animation: hotspot-fade 2.4s ease-in-out infinite;
+  }
+
+  @keyframes hotspot-fade {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .hotspot-pulse {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px solid var(--red);
+    opacity: 0.6;
+    animation: hotspot-pulse 2s ease-out infinite;
+  }
+
+  @keyframes hotspot-pulse {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(1.6);
+      opacity: 0;
+    }
+  }
+
+  .hotspot.active {
+    background: var(--red-dark);
+    animation: none;
+    opacity: 1;
+  }
+
+  .hotspot-panel {
+    width: 100%;
+    max-width: 960px;
+    min-height: 88px;
+    background: #f5f5f5;
+    border: 1px solid #e2e2e2;
+    border-radius: 12px;
+    padding: 20px 24px;
+  }
+
+  .hotspot-panel[data-empty='true'] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hotspot-panel-hint {
+    color: #6a6a6a;
+    margin: 0;
+  }
+
+  .hotspot-panel h3 {
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .hotspot-panel p {
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .detail {
+    background: var(--near-black);
+    padding: 64px 0;
+  }
+
+  .detail-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .detail-inner h2 {
+    margin-bottom: 20px;
+  }
+
+  .detail-inner p {
+    color: var(--gray-text);
+    line-height: 1.7;
+    text-align: left;
+  }
+
+  .cta {
+    background: var(--white);
+    color: var(--black);
+    text-align: center;
+    padding: 80px 0;
+  }
+
+  .cta h2 {
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .cta p {
+    color: #4a4a4a;
+    max-width: 600px;
+    margin: 0 auto 8px;
+  }
+
+  .cta .btn {
+    margin-top: 24px;
+  }
+
+  @media (max-width: 900px) {
+    .intro-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hotspot {
+      width: 18px;
+      height: 18px;
+      border-width: 2px;
+    }
+
+    .hotspot-pulse {
+      inset: -5px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .intro-features {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script define:vars={{ homeHotspots }}>
+  const hotspotButtons = document.querySelectorAll('.hotspot');
+  const panel = document.getElementById('hotspot-panel');
+
+  hotspotButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const index = Number(button.dataset.index);
+      const hotspot = homeHotspots[index];
+      if (!hotspot) return;
+
+      hotspotButtons.forEach((btn) => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      panel.dataset.empty = 'false';
+      panel.innerHTML = `<h3>${hotspot.title}</h3><p>${hotspot.description}</p>`;
+    });
+  });
+</script>
