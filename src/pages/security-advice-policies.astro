@@ -1,0 +1,235 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import QuoteModal from '../components/QuoteModal.astro';
+
+const docIcon = '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>';
+const certIcon = '<circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 7 22l5-3 5 3-1.5-9.5"/>';
+
+const policies = [
+  { label: 'Privacy Policy', href: '/docs/Privacy-Policy.pdf' },
+  { label: 'Data Protection', href: '/docs/Data-Protection-Policy.pdf' },
+  { label: 'Corporate & Social Responsibility', href: '/docs/Corporate-Social-Responsibility-Policy.pdf' },
+  { label: 'Equal Opportunities', href: '/docs/Equal-Opportunities-and-Diversity-Policy.pdf' },
+  { label: 'Modern Slavery Statement', href: '/docs/Modern-Slavery-Annual-Statement.pdf' },
+  { label: 'Health and Safety', href: '/docs/Health-and-Safety-Policy.pdf' },
+  { label: 'Lone Worker', href: '/docs/Lone-Worker-Policy.pdf' },
+  { label: 'Driver Safety', href: '/docs/Safe-Driver-Policy.pdf' },
+];
+
+const certificates = [
+  { label: 'SIA Approved Contractor', href: '/docs/SIA-Approved-Contractor-Certificate.pdf' },
+  { label: 'RoSPA Certificate', href: '/docs/RoSPA-Certificate.pdf' },
+  { label: 'Safe PQQ Certificate', href: '/docs/PQQ-Certificate.pdf' },
+  { label: 'RSPH Certificate', href: '/docs/RSPH-Certificate.pdf' },
+  { label: 'Alcumus Safe Contractor', href: '/docs/Alcumus-Safe-Contractor-Certificate.pdf' },
+  { label: 'Fleet Insurance', href: '/docs/Fleet-Insurance-Certificate.pdf' },
+  { label: 'Liability Insurance', href: '/docs/Liability-Insurance-Certificate.pdf' },
+];
+---
+
+<Layout title="Security Advice & Policies | TrustOn Security Systems" description="Our policies and certificates - the standards and accreditations behind everything TrustOn does.">
+  <Header />
+
+  <main>
+    <!-- Intro -->
+    <section class="sap-intro">
+      <div class="container">
+        <h1>Security Advice &amp; Policies</h1>
+        <p>The standards, policies and accreditations behind everything we do.</p>
+      </div>
+    </section>
+
+    <!-- Our Policies -->
+    <section class="sap-section">
+      <div class="container">
+        <h2 class="sap-section-title">Our Policies</h2>
+        <div class="sap-grid">
+          {policies.map((doc) => (
+            <a class="sap-card" href={doc.href} target="_blank" rel="noopener noreferrer">
+              <svg class="sap-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" set:html={docIcon} />
+              <span class="sap-card-label">{doc.label}</span>
+              <span class="sap-card-action">Download PDF</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Certificates -->
+    <section class="sap-section sap-section-alt">
+      <div class="container">
+        <h2 class="sap-section-title">Our Certificates</h2>
+        <div class="sap-grid">
+          {certificates.map((doc) => (
+            <a class="sap-card" href={doc.href} target="_blank" rel="noopener noreferrer">
+              <svg class="sap-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" set:html={certIcon} />
+              <span class="sap-card-label">{doc.label}</span>
+              <span class="sap-card-action">Download PDF</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Detail -->
+    <section class="detail">
+      <div class="container detail-inner">
+        <h2>Compliance you can verify.</h2>
+        <p>
+          We hold ourselves to the same standards we design into every system: transparent,
+          accountable and properly accredited.
+        </p>
+        <p>
+          Every policy and certificate above is available for you to download, review and keep on
+          file for your own due diligence.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container">
+        <h2>Can't find what you're looking for?</h2>
+        <p>Need a copy of a specific document, or have a compliance question for a tender or contract?</p>
+        <p>Simply fill out the form, and our team of experts will respond as quickly as possible.</p>
+        <button type="button" class="btn" data-open-quote>Start your bespoke quote</button>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <QuoteModal />
+</Layout>
+
+<style>
+  .sap-intro {
+    background: var(--near-black);
+    padding: 64px 0;
+    text-align: center;
+  }
+
+  .sap-intro p {
+    color: var(--gray-text);
+    margin-top: 12px;
+  }
+
+  .sap-section {
+    background: var(--black);
+    padding: 64px 0;
+  }
+
+  .sap-section-alt {
+    background: var(--near-black);
+  }
+
+  .sap-section-title {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .sap-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .sap-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: var(--near-black);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 20px;
+    text-decoration: none;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .sap-section-alt .sap-card {
+    background: var(--black);
+  }
+
+  .sap-card:hover {
+    border-color: var(--red);
+    transform: translateY(-2px);
+  }
+
+  .sap-card-icon {
+    width: 36px;
+    height: 36px;
+    color: var(--red);
+    margin-bottom: 14px;
+  }
+
+  .sap-card-label {
+    color: var(--white);
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .sap-card-action {
+    color: var(--gray-text);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .detail {
+    background: var(--near-black);
+    padding: 64px 0;
+  }
+
+  .detail-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .detail-inner h2 {
+    margin-bottom: 20px;
+  }
+
+  .detail-inner p {
+    color: var(--gray-text);
+    line-height: 1.7;
+    text-align: left;
+  }
+
+  .cta {
+    background: var(--white);
+    color: var(--black);
+    text-align: center;
+    padding: 80px 0;
+  }
+
+  .cta h2 {
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .cta p {
+    color: #4a4a4a;
+    max-width: 600px;
+    margin: 0 auto 8px;
+  }
+
+  .cta .btn {
+    margin-top: 24px;
+  }
+
+  @media (max-width: 900px) {
+    .sap-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .sap-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
