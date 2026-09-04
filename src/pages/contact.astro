@@ -35,8 +35,8 @@ const cards = [
   <Header />
 
   <main>
-    <!-- Intro -->
-    <section class="contact-intro">
+    <!-- Info cards -->
+    <section class="contact-cards">
       <div class="container contact-intro-inner">
         <h1>Get In Touch</h1>
         <p>
@@ -44,10 +44,6 @@ const cards = [
           will be happy to discuss your specific requirements.
         </p>
       </div>
-    </section>
-
-    <!-- Info cards -->
-    <section class="contact-cards">
       <div class="container contact-cards-grid">
         {cards.map((card) => (
           <div class="contact-card">
@@ -118,15 +114,10 @@ const cards = [
 </Layout>
 
 <style>
-  .contact-intro {
-    background: var(--near-black);
-    padding: 64px 0;
-    text-align: center;
-  }
-
   .contact-intro-inner {
     max-width: 700px;
-    margin: 0 auto;
+    margin: 0 auto 48px;
+    text-align: center;
   }
 
   .contact-intro-inner h1 {
