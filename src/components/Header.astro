@@ -401,7 +401,7 @@ const aboutLinks = [
   }
 
   .mobile-submenu.open {
-    max-height: 900px;
+    max-height: 500px;
   }
 
   .mobile-submenu a {
@@ -418,11 +418,21 @@ const aboutLinks = [
 
   .mobile-submenu-columns {
     display: flex;
-    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mobile-submenu-column {
+    flex: 1;
+    min-width: 0;
   }
 
   .mobile-submenu-column + .mobile-submenu-column {
-    border-top: 2px solid var(--red);
+    border-left: 2px solid var(--red);
+  }
+
+  .mobile-submenu-columns .mobile-submenu-column a {
+    padding-left: 20px;
+    padding-right: 12px;
   }
 
   .mobile-contact-btn {
