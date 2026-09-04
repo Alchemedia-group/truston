@@ -340,6 +340,16 @@ const homeHotspots = [
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
     cursor: pointer;
     padding: 0;
+    animation: hotspot-fade 2.4s ease-in-out infinite;
+  }
+
+  @keyframes hotspot-fade {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
   }
 
   .hotspot-pulse {
@@ -364,6 +374,8 @@ const homeHotspots = [
 
   .hotspot.active {
     background: var(--red-dark);
+    animation: none;
+    opacity: 1;
   }
 
   .hotspot-panel {
