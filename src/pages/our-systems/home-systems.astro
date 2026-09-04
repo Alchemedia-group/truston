@@ -5,7 +5,7 @@ import Footer from '../../components/Footer.astro';
 import QuoteModal from '../../components/QuoteModal.astro';
 import { getMedia, isVideo } from '../../lib/media';
 
-const heroMedia = getMedia('Truston Home Security');
+const heroMedia = getMedia('Truston Home Systems Hero') ?? getMedia('Truston Home Security');
 
 const introFeatures = [
   {
