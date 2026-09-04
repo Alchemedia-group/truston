@@ -4,8 +4,8 @@ import Logo from './Logo.astro';
 const currentYear = new Date().getFullYear();
 
 const footerLinks = [
-  { label: 'Privacy Policy', href: '/privacy-policy' },
-  { label: 'Modern Slavery Statement', href: '/modern-slavery-statement' },
+  { label: 'Privacy Policy', href: '/docs/Privacy-Policy.pdf', external: true },
+  { label: 'Modern Slavery Statement', href: '/docs/Modern-Slavery-Annual-Statement.pdf', external: true },
   { label: 'Security Advice & Policies', href: '/security-advice-policies' },
   { label: 'Threat Level', href: '/threat-level' },
 ];
@@ -17,7 +17,7 @@ const footerLinks = [
 
     <nav class="footer-links" aria-label="Footer navigation">
       {footerLinks.map((link) => (
-        <a href={link.href}>{link.label}</a>
+        <a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener noreferrer' : undefined}>{link.label}</a>
       ))}
     </nav>
 
